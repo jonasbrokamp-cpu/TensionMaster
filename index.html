@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#121a14">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<title>Saitenhärte-Messer</title>
+<style>
+body{margin:0;background:#121a14;color:#e8efe3;font-family:Arial,sans-serif}
+main{max-width:480px;margin:0 auto;padding:20px 18px 40px}
+h1{font-size:26px;margin:0 0 14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-size:13px;color:#93a395}
+input,select{width:100%;margin-top:4px;padding:11px 10px;font-size:16px;border:1px solid #33453a;border-radius:8px;background:#1d2a20;color:#e8efe3;box-sizing:border-box}
+.full{grid-column:1/-1}
+.court{margin-top:22px;padding:22px 16px;border-radius:14px;background:#1d2a20;text-align:center}
+.big{font-size:64px;font-weight:700;color:#8fd16a}
+.big small{font-size:22px;color:#93a395;font-weight:400}
+.dots{display:flex;justify-content:center;gap:10px;margin:16px 0}
+.dots i{width:22px;height:22px;border-radius:50%;border:2px solid #33453a}
+.dots i.on{background:#c9e23a;border-color:#c9e23a}
+button{width:100%;padding:15px;font-size:17px;font-weight:700;border:0;border-radius:10px;background:#8fd16a;color:#121a14}
+.opt{background:#1d2a20;color:#e8efe3;font-size:14px;font-weight:400;text-align:left;padding:10px;margin-top:6px;border:1px solid #33453a}
+#msg,#hz,#sinfo{font-size:13px;color:#93a395;margin:6px 0}
+</style></head><body><main>
+<h1>Saitenhärte-Messer</h1>
+<div class="grid">
+<label class="full">Saite suchen (optional, z.B. "solinco hyper")<input id="q" type="search" autocomplete="off"></label>
+<div class="full"><div id="res"></div><div id="sinfo">Ohne Auswahl wird der Materialstandard genutzt.</div></div>
+<label>Kopfgröße (sq in)<input id="head" type="number" value="100"></label>
+<label>Saitendicke (mm)<input id="gauge" type="number" value="1.25" step="0.01"></label>
+<label class="full">Material<select id="mat"><option value="1.14">Nylon / Synthetik</option><option value="1.38">Polyester</option><option value="1.30">Naturdarm</option></select></label>
+<label>Steifigkeit (lb/in)<input id="stiff" type="number" placeholder="leer = Standard"></label>
+<label>Kalibrierfaktor<input id="cal" type="number" value="1.00" step="0.01"></label>
+</div>
+<div class="court">
+<div class="big"><span id="kg">-</span> <small>kg</small></div>
+<div class="dots" id="dots"><i></i><i></i><i></i><i></i><i></i></div>
+<p id="msg">Bereit.</p>
+<button id="go">Messung starten</button>
+<div id="hz"></div>
+</div></main>
+<script>
+var RAW=`Luxilon|4G 16 (1.30)|287|P
+Luxilon|4G 16L (1.25)|259|P
+Luxilon|4G Soft 1.25|217|P
+Luxilon|ALU Power 125/16L|209|P
+Luxilon|Big Banger Original 130/16|213|P
+Luxilon|Element 16L (1.25)|208|P
+Luxilon|Savage 16/1.27|234|P
+Luxilon|Natural Gut 1.25|82|G
+Babolat|RPM Blast 16|233|P
+Babolat|RPM Blast 17/1.25|234|P
+Babolat|RPM Blast 18 (1.20)|189|P
+Babolat|RPM Team 17 (1.25)|245|N+
+Babolat|Pro Hurricane Tour 16|227|P
+Babolat|Pro Hurricane 16|204|P
+Babolat|Hurricane Feel 16|250|P
+Babolat|Xcel 16|151|N
+Babolat|Origin 17|171|N
+Babolat|Addiction 16|167|N
+Babolat|Synthetic Gut 16 (1.30)|169|N
+Babolat|VS Natural Team Gut 17 (1.25)|92|G
+Babolat|Tonic + Natural Gut 16|99|G
+Wilson|Natural Gut 16|97|G
+Wilson|Natural Gut 17|81|G
+Wilson|Revolve 16 (1.30)|184|P
+Wilson|Revolve 17 (1.25)|192|P
+Wilson|Enduro Pro 16|219|P
+Wilson|Enduro Pro 17 (1.25)|227|N+
+Wilson|NXT 16|174|N
+Wilson|NXT 17|156|N
+Wilson|Sensation 16|169|N
+Wilson|Synthetic Gut Power 16 (1.30)|156|N
+Wilson|Ripspin 16|212|P
+Solinco|Hyper-G 16|219|P
+Solinco|Hyper-G 16L (1.25)|218|P
+Solinco|Hyper-G 17 (1.20)|195|P
+Solinco|Hyper-G Soft 16L (1.25)|172|P
+Solinco|Tour Bite 16|203|P
+Solinco|Tour Bite 16L (1.25)|238|P
+Solinco|Tour Bite 17|181|P
+Solinco|Tour Bite Soft 16L (1.25)|192|P
+Solinco|Confidential 16 (1.30)|222|P
+Solinco|Revolution 16|215|P
+Solinco|Barb Wire 16|214|P
+Solinco|Outlast 16|208|P
+Tecnifibre|Black Code 16|250|P
+Tecnifibre|Black Code 17|236|P
+Tecnifibre|Black Code 4S 16 (1.30)|243|P
+Tecnifibre|Razor Code 16 (1.30)|243|P
+Tecnifibre|Razor Code 17 (1.25)|229|P
+Tecnifibre|Pro Red Code 16|232|P
+Tecnifibre|Ice Code 16 (1.30)|221|P
+Tecnifibre|Multi-Feel 16|155|N+
+Tecnifibre|X-One Biphase 16|163|N+
+Tecnifibre|NRG2 16|158|N
+Head|Hawk 16 (1.30)|230|P
+Head|Hawk 17 (1.25)|205|P
+Head|Lynx 16 (1.30)|186|P
+Head|Lynx Tour 16 (1.30)|229|P
+Head|Sonic Pro 16|161|P
+Head|FXP Tour 16|117|N+
+Head|Velocity MLT 17 (1.25)|153|N
+Yonex|Poly Tour Pro 17 (1.20)|189|P
+Yonex|Poly Tour Pro Yellow 16 (1.30)|191|P
+Yonex|Poly Tour Spin 16L (1.25)|214|P
+Yonex|Poly Tour Strike 16L (1.25)|199|P
+Yonex|Poly Tour HS 16 (1.30)|214|P
+Prince|Tour XR 16 (1.30)|215|P
+Prince|Synthetic Gut Original 16|191|N
+Prince|Premier Control 16|158|N
+Gamma|Ocho 16 (1.30)|243|P
+Gamma|Moto 16|227|P
+Gamma|TNT2 16|171|N
+Gamma|Synthetic Gut 16|186|N
+Kirschbaum|Max Power 16 (1.30)|233|P
+Kirschbaum|Max Power 17 (1.25)|241|P
+Kirschbaum|Pro Line II 17 (1.25)|201|P
+Kirschbaum|Super Smash 16/1.30|222|P
+Kirschbaum|Competition 17 (1.25)|210|P
+Volkl|Cyclone 16|197|P
+Volkl|V-Torque 16|182|P
+Dunlop|Explosive Speed 17 (1.25)|250|P
+Dunlop|Black Widow 16|193|P
+Dunlop|Silk 16 (1.30)|147|N
+Pacific|Classic Natural Gut 16|100|G
+Pacific|Prime Natural Gut 16|85|G
+Gosen|Polylon 16|207|P
+Gosen|OG Sheep Micro 16|183|N
+Tourna|Big Hitter Silver 16|209|P
+Tourna|Big Hitter Blue 16|226|P
+Ashaway|MonoGut ZX 16|106|N+
+Signum Pro|Hyperion 16|220|P
+Signum Pro|Poly Plasma 17 (1.23)|198|P`;
+var DB=RAW.split("\n").map(function(l){var p=l.split("|");return [p[0],p[1],parseInt(p[2]),p[3]]});
+var ctx,an,stream,running=false,hits=[],raf;
+function $(i){return document.getElementById(i)}
+function dots(n){var d=$('dots').children;for(var i=0;i<5;i++)d[i].className=i<n?'on':''}
+var IDS=['head','gauge','mat','stiff','cal'];
+function save(){IDS.forEach(function(id){try{localStorage.setItem('f_'+id,$(id).value)}catch(e){}})}
+IDS.forEach(function(id){try{var v=localStorage.getItem('f_'+id);if(v!==null)$(id).value=v}catch(e){}
+ $(id).addEventListener('change',save)});
+function pick(s){
+ $('stiff').value=s[2];
+ $('mat').value=s[3].charAt(0)==='P'?'1.38':(s[3]==='G'?'1.30':'1.14');
+ var g=null,m=s[1].match(/1\.\d{1,3}/);
+ if(m&&parseFloat(m[0])>=1.0&&parseFloat(m[0])<=1.5)g=parseFloat(m[0]);
+ else{var n=s[1].match(/\b(1[5-9])(L?)\b/);
+  if(n){var t={'15':1.38,'15L':1.35,'16':1.30,'16L':1.25,'17':1.24,'17L':1.18,'18':1.18,'19':1.10};g=t[n[1]+n[2]]||null}}
+ if(g)$('gauge').value=g;
+ $('q').value=s[0]+' '+s[1];$('res').innerHTML='';
+ $('sinfo').textContent='Gewählt: '+s[0]+' '+s[1]+' ('+s[2]+' lb/in). Dicke bitte prüfen.';save()}
+function add(s){var b=document.createElement('button');b.className='opt';
+ b.textContent=s[0]+' '+s[1]+' ('+s[2]+')';b.onclick=function(){pick(s)};$('res').appendChild(b)}
+$('q').oninput=function(){
+ var w=this.value.toLowerCase().split(/\s+/).filter(Boolean),n=0;$('res').innerHTML='';
+ if(!w.length)return;
+ for(var i=0;i<DB.length&&n<8;i++){var t=(DB[i][0]+' '+DB[i][1]).toLowerCase();
+  if(w.every(function(x){return t.indexOf(x)>-1})){n++;add(DB[i])}}
+ if(!n)$('sinfo').textContent='Nicht gefunden. Steifigkeit manuell eingeben oder leer lassen.'};
+function tension(f){
+ var A=parseFloat($('head').value)*6.4516,L=1.34*Math.sqrt(A)/100;
+ var d=parseFloat($('gauge').value)/1000,rho=parseFloat($('mat').value)*1000;
+ var mu=rho*Math.PI*d*d/4,cal=parseFloat($('cal').value)||1;
+ var def={'1.14':160,'1.38':210,'1.30':92}[$('mat').value];
+ var S=parseFloat($('stiff').value),corr=1;
+ if(S>0)corr=Math.pow(S/def,-0.15);
+ return 4*L*L*f*f*mu*cal*corr/9.80665}
+function peak(buf,sr,n){
+ var lo=Math.floor(250*n/sr),hi=Math.floor(1500*n/sr),m=-1e9,k=lo;
+ for(var i=lo;i<hi;i++)if(buf[i]>m){m=buf[i];k=i}
+ if(m<-90)return null;
+ var a=buf[k-1],b=buf[k],c=buf[k+1],p=0.5*(a-c)/(a-2*b+c);
+ return (k+(isFinite(p)?p:0))*sr/n}
+function stop(){running=false;cancelAnimationFrame(raf);
+ if(stream)stream.getTracks().forEach(function(t){t.stop()});
+ if(ctx)ctx.close();ctx=null;$('go').textContent='Neue Messung'}
+function finish(){stop();
+ var s=hits.slice().sort(function(a,b){return a-b}),f=s[2];
+ $('kg').textContent=tension(f).toFixed(1);
+ $('hz').textContent='Median '+f.toFixed(0)+' Hz | '+hits.map(function(h){return h.toFixed(0)}).join(', ');
+ $('msg').textContent='Fertig.'}
+async function start(){
+ save();hits=[];dots(0);$('kg').textContent='-';$('hz').textContent='';
+ try{stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}})}
+ catch(e){$('msg').textContent='Kein Mikrofonzugriff: '+(e&&e.name);return}
+ ctx=new (window.AudioContext||window.webkitAudioContext)();
+ an=ctx.createAnalyser();an.fftSize=8192;an.smoothingTimeConstant=0;
+ ctx.createMediaStreamSource(stream).connect(an);
+ var td=new Float32Array(1024),fd=new Float32Array(an.frequencyBinCount);
+ var onset=0,last=0;
+ running=true;$('go').textContent='Abbrechen';$('msg').textContent='Schlag 1 von 5: Tippe auf die Saiten.';
+ (function loop(){
+  if(!running)return;
+  var now=performance.now();an.getFloatTimeDomainData(td);
+  var r=0;for(var i=0;i<td.length;i++)r+=td[i]*td[i];r=Math.sqrt(r/td.length);
+  if(!onset&&r>0.03&&now-last>600)onset=now;
+  if(onset&&now-onset>140){
+   an.getFloatFrequencyData(fd);
+   var f=peak(fd,ctx.sampleRate,an.fftSize);onset=0;last=now;
+   if(f){hits.push(f);dots(hits.length);
+    if(hits.length>=5){finish();return}
+    $('msg').textContent='Schlag '+(hits.length+1)+' von 5.'}
+   else $('msg').textContent='Ton zu leise, bitte nochmal.'}
+  raf=requestAnimationFrame(loop)})()}
+$('go').onclick=function(){
+ if(running){stop();$('msg').textContent='Abgebrochen.';dots(0);return}
+ start()};
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(function(){});
+</script></body></html>
