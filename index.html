@@ -133,6 +133,7 @@ Ashaway|MonoGut ZX 16|106|N+
 Signum Pro|Hyperion 16|220|P
 Signum Pro|Poly Plasma 17 (1.23)|198|P`;
 var DB=RAW.split("\n").map(function(l){var p=l.split("|");return [p[0],p[1],parseInt(p[2]),p[3]]});
+fetch('strings.json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){if(d.length>100){DB=d;$('sinfo').textContent=d.length+' Saiten geladen. Ohne Auswahl wird der Materialstandard genutzt.'}}).catch(function(){});
 var ctx,an,stream,running=false,hits=[],raf;
 function $(i){return document.getElementById(i)}
 function dots(n){var d=$('dots').children;for(var i=0;i<5;i++)d[i].className=i<n?'on':''}
