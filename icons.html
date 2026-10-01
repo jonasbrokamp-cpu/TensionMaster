@@ -1,0 +1,15 @@
+<!DOCTYPE html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<body style="font-family:Arial;background:#121a14;color:#e8efe3;padding:20px">
+<h2>Icons erzeugen</h2>
+<p>Tippe auf beide Knöpfe. Die Dateien landen in Downloads.</p>
+<button onclick="dl(192)" style="padding:14px;font-size:16px">icon-192.png laden</button>
+<button onclick="dl(512)" style="padding:14px;font-size:16px">icon-512.png laden</button>
+<script>
+function dl(s){var c=document.createElement('canvas');c.width=c.height=s;var x=c.getContext('2d'),k=s/512;
+x.fillStyle='#121a14';x.fillRect(0,0,s,s);
+x.fillStyle='#c9e23a';x.beginPath();x.arc(256*k,256*k,170*k,0,7);x.fill();
+x.strokeStyle='#121a14';x.lineWidth=18*k;
+x.beginPath();x.moveTo(110*k,170*k);x.quadraticCurveTo(256*k,256*k,110*k,342*k);x.stroke();
+x.beginPath();x.moveTo(402*k,170*k);x.quadraticCurveTo(256*k,256*k,402*k,342*k);x.stroke();
+c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='icon-'+s+'.png';a.click()})}
+</script></body>
