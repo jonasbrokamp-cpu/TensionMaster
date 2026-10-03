@@ -33,6 +33,15 @@ button{width:100%;padding:15px;font-size:17px;font-weight:700;border:0;border-ra
 <label class="full">Material<select id="mat"><option value="1.14">Nylon / Synthetik</option><option value="1.38">Polyester</option><option value="1.30">Naturdarm</option></select></label>
 <label>Steifigkeit (lb/in)<input id="stiff" type="number" placeholder="leer = Standard"></label>
 <label>Kalibrierfaktor<input id="cal" type="number" value="1.00" step="0.01"></label>
+<label class="full"><input id="hyb" type="checkbox" style="width:auto;margin-right:8px">Hybridbespannung (Quersaiten anders). Oben = Hauptsaiten</label>
+<div id="b2" class="full" style="display:none"><div class="grid">
+<label class="full">Quersaite suchen<input id="q2" type="search" autocomplete="off"></label>
+<div class="full"><div id="res2"></div><div id="sinfo2" style="font-size:13px;color:#93a395"></div></div>
+<label>Dicke Quersaite (mm)<input id="gauge2" type="number" value="1.25" step="0.01"></label>
+<label>Steifigkeit Quer (lb/in)<input id="stiff2" type="number" placeholder="leer = Standard"></label>
+<label class="full">Material Quersaite<select id="mat2"><option value="1.14">Nylon / Synthetik</option><option value="1.38">Polyester</option><option value="1.30">Naturdarm</option></select></label>
+<div class="full" id="gch2"></div>
+</div></div>
 </div>
 <div class="court">
 <div class="big"><span id="kg">-</span> <small>kg</small></div>
@@ -139,48 +148,59 @@ fetch('strings.json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(f
 var ctx,an,stream,running=false,hits=[],raf;
 function $(i){return document.getElementById(i)}
 function dots(n){var d=$('dots').children;for(var i=0;i<5;i++)d[i].className=i<n?'on':''}
-var IDS=['head','gauge','mat','stiff','cal'];
-function save(){IDS.forEach(function(id){try{localStorage.setItem('f_'+id,$(id).value)}catch(e){}})}
-IDS.forEach(function(id){try{var v=localStorage.getItem('f_'+id);if(v!==null)$(id).value=v}catch(e){}
+var IDS=['head','gauge','mat','stiff','cal','hyb','gauge2','mat2','stiff2'];
+function save(){IDS.forEach(function(id){try{var e=$(id);localStorage.setItem('f_'+id,e.type==='checkbox'?(e.checked?'1':'0'):e.value)}catch(x){}})}
+IDS.forEach(function(id){try{var v=localStorage.getItem('f_'+id),e=$(id);
+ if(v!==null){if(e.type==='checkbox')e.checked=(v==='1');else e.value=v}}catch(x){}
  $(id).addEventListener('change',save)});
+function showB2(){$('b2').style.display=$('hyb').checked?'block':'none'}
+$('hyb').addEventListener('change',showB2);showB2();
+
 var GR={'15':[1.35,1.38,1.40],'15L':[1.32,1.35,1.37],'16':[1.28,1.30,1.32],'16L':[1.24,1.25,1.27],'17':[1.20,1.24,1.25,1.27],'17L':[1.18,1.20,1.22],'18':[1.15,1.18,1.20],'19':[1.10,1.12]};
-var cur=null;
-function remember(){if(cur){try{localStorage.setItem('g_'+cur,$('gauge').value)}catch(e){}}}
-$('gauge').addEventListener('change',remember);
-function chips(a){var b=$('gch');b.innerHTML='';if(!a)return;
+var cur={'':null,'2':null};
+function remember(s){if(cur[s]){try{localStorage.setItem('g_'+cur[s],$('gauge'+s).value)}catch(e){}}}
+$('gauge').addEventListener('change',function(){remember('')});
+$('gauge2').addEventListener('change',function(){remember('2')});
+function chips(a,s){var b=$('gch'+s);b.innerHTML='';if(!a)return;
  var t=document.createElement('div');t.style.cssText='font-size:13px;color:#93a395';
  t.textContent='Dicke nicht exakt bekannt. Wähle den Wert vom Saitenpaket:';b.appendChild(t);
  a.forEach(function(v){var c=document.createElement('button');c.className='chip';c.textContent=v.toFixed(2);
-  c.onclick=function(){$('gauge').value=v;remember();save()};b.appendChild(c)})}
-function pick(s){
- cur=s[0]+' '+s[1];
- $('stiff').value=s[2];
- $('mat').value=s[3].charAt(0)==='P'?'1.38':(s[3]==='G'?'1.30':'1.14');
- var g=null,ch=null,saved=null,m=s[1].match(/1\.\d{1,3}/);
- try{saved=localStorage.getItem('g_'+cur)}catch(e){}
+  c.onclick=function(){$('gauge'+s).value=v;remember(s);save()};b.appendChild(c)})}
+function pick(x,s){
+ cur[s]=x[0]+' '+x[1];
+ $('stiff'+s).value=x[2];
+ $('mat'+s).value=x[3].charAt(0)==='P'?'1.38':(x[3]==='G'?'1.30':'1.14');
+ var g=null,ch=null,saved=null,m=x[1].match(/1\.\d{1,3}/);
+ try{saved=localStorage.getItem('g_'+cur[s])}catch(e){}
  if(saved)g=parseFloat(saved);
  else if(m&&parseFloat(m[0])>=1.0&&parseFloat(m[0])<=1.5)g=parseFloat(m[0]);
- else{var n=s[1].match(/\b(1[5-9])(L?)\b/);
+ else{var n=x[1].match(/\b(1[5-9])(L?)\b/);
   if(n&&GR[n[1]+n[2]]){ch=GR[n[1]+n[2]];g=ch[Math.floor(ch.length/2)]}}
- if(g)$('gauge').value=g;
- chips(ch);
- $('q').value=cur;$('res').innerHTML='';
- $('sinfo').textContent='Gewählt: '+cur+' ('+s[2]+' lb/in).'+(ch?' Dicke geschätzt.':'');save()}
-function add(s){var b=document.createElement('button');b.className='opt';
- b.textContent=s[0]+' '+s[1]+' ('+s[2]+')';b.onclick=function(){pick(s)};$('res').appendChild(b)}
-$('q').oninput=function(){
- var w=this.value.toLowerCase().split(/\s+/).filter(Boolean),n=0;$('res').innerHTML='';
+ if(g)$('gauge'+s).value=g;
+ chips(ch,s);
+ $('q'+s).value=cur[s];$('res'+s).innerHTML='';
+ $('sinfo'+s).textContent='Gewählt: '+cur[s]+' ('+x[2]+' lb/in).'+(ch?' Dicke geschätzt.':'');save()}
+function add(x,s){var b=document.createElement('button');b.className='opt';
+ b.textContent=x[0]+' '+x[1]+' ('+x[2]+')';b.onclick=function(){pick(x,s)};$('res'+s).appendChild(b)}
+function search(v,s){
+ var w=v.toLowerCase().split(/\s+/).filter(Boolean),n=0;$('res'+s).innerHTML='';
  if(!w.length)return;
  for(var i=0;i<DB.length&&n<8;i++){var t=(DB[i][0]+' '+DB[i][1]).toLowerCase();
-  if(w.every(function(x){return t.indexOf(x)>-1})){n++;add(DB[i])}}
- if(!n)$('sinfo').textContent='Nicht gefunden. Steifigkeit manuell eingeben oder leer lassen.'};
+  if(w.every(function(y){return t.indexOf(y)>-1})){n++;add(DB[i],s)}}
+ if(!n)$('sinfo'+s).textContent='Nicht gefunden. Steifigkeit manuell eingeben oder leer lassen.'}
+$('q').oninput=function(){search(this.value,'')};
+$('q2').oninput=function(){search(this.value,'2')};
+
+function side(s){
+ var d=parseFloat($('gauge'+s).value)/1000,rho=parseFloat($('mat'+s).value)*1000;
+ var def={'1.14':160,'1.38':210,'1.30':92}[$('mat'+s).value];
+ var S=parseFloat($('stiff'+s).value),corr=1;
+ if(S>0)corr=Math.pow(S/def,-0.15);
+ return {mu:rho*Math.PI*d*d/4,corr:corr}}
 function tension(f){
  var A=parseFloat($('head').value)*6.4516,L=1.34*Math.sqrt(A)/100;
- var d=parseFloat($('gauge').value)/1000,rho=parseFloat($('mat').value)*1000;
- var mu=rho*Math.PI*d*d/4,cal=parseFloat($('cal').value)||1;
- var def={'1.14':160,'1.38':210,'1.30':92}[$('mat').value];
- var S=parseFloat($('stiff').value),corr=1;
- if(S>0)corr=Math.pow(S/def,-0.15);
+ var cal=parseFloat($('cal').value)||1,a=side(''),mu=a.mu,corr=a.corr;
+ if($('hyb').checked){var b=side('2');mu=(a.mu+b.mu)/2;corr=(a.corr+b.corr)/2}
  return 4*L*L*f*f*mu*cal*corr/9.80665}
 function peak(buf,sr,n){
  var lo=Math.floor(250*n/sr),hi=Math.floor(1500*n/sr),m=-1e9,k=lo;
