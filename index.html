@@ -143,16 +143,29 @@ var IDS=['head','gauge','mat','stiff','cal'];
 function save(){IDS.forEach(function(id){try{localStorage.setItem('f_'+id,$(id).value)}catch(e){}})}
 IDS.forEach(function(id){try{var v=localStorage.getItem('f_'+id);if(v!==null)$(id).value=v}catch(e){}
  $(id).addEventListener('change',save)});
+var GR={'15':[1.35,1.38,1.40],'15L':[1.32,1.35,1.37],'16':[1.28,1.30,1.32],'16L':[1.24,1.25,1.27],'17':[1.20,1.24,1.25,1.27],'17L':[1.18,1.20,1.22],'18':[1.15,1.18,1.20],'19':[1.10,1.12]};
+var cur=null;
+function remember(){if(cur){try{localStorage.setItem('g_'+cur,$('gauge').value)}catch(e){}}}
+$('gauge').addEventListener('change',remember);
+function chips(a){var b=$('gch');b.innerHTML='';if(!a)return;
+ var t=document.createElement('div');t.style.cssText='font-size:13px;color:#93a395';
+ t.textContent='Dicke nicht exakt bekannt. Wähle den Wert vom Saitenpaket:';b.appendChild(t);
+ a.forEach(function(v){var c=document.createElement('button');c.className='chip';c.textContent=v.toFixed(2);
+  c.onclick=function(){$('gauge').value=v;remember();save()};b.appendChild(c)})}
 function pick(s){
+ cur=s[0]+' '+s[1];
  $('stiff').value=s[2];
  $('mat').value=s[3].charAt(0)==='P'?'1.38':(s[3]==='G'?'1.30':'1.14');
- var g=null,m=s[1].match(/1\.\d{1,3}/);
- if(m&&parseFloat(m[0])>=1.0&&parseFloat(m[0])<=1.5)g=parseFloat(m[0]);
+ var g=null,ch=null,saved=null,m=s[1].match(/1\.\d{1,3}/);
+ try{saved=localStorage.getItem('g_'+cur)}catch(e){}
+ if(saved)g=parseFloat(saved);
+ else if(m&&parseFloat(m[0])>=1.0&&parseFloat(m[0])<=1.5)g=parseFloat(m[0]);
  else{var n=s[1].match(/\b(1[5-9])(L?)\b/);
-  if(n){var t={'15':1.38,'15L':1.35,'16':1.30,'16L':1.25,'17':1.24,'17L':1.18,'18':1.18,'19':1.10};g=t[n[1]+n[2]]||null}}
+  if(n&&GR[n[1]+n[2]]){ch=GR[n[1]+n[2]];g=ch[Math.floor(ch.length/2)]}}
  if(g)$('gauge').value=g;
- $('q').value=s[0]+' '+s[1];$('res').innerHTML='';
- $('sinfo').textContent='Gewählt: '+s[0]+' '+s[1]+' ('+s[2]+' lb/in). Dicke bitte prüfen.';save()}
+ chips(ch);
+ $('q').value=cur;$('res').innerHTML='';
+ $('sinfo').textContent='Gewählt: '+cur+' ('+s[2]+' lb/in).'+(ch?' Dicke geschätzt.':'');save()}
 function add(s){var b=document.createElement('button');b.className='opt';
  b.textContent=s[0]+' '+s[1]+' ('+s[2]+')';b.onclick=function(){pick(s)};$('res').appendChild(b)}
 $('q').oninput=function(){
