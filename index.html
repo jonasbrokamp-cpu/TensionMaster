@@ -1,8 +1,7 @@
 <!DOCTYPE html><html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#121a14">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon.svg">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg">
 <title>Saitenhärte-Messer</title>
 <style>
 body{margin:0;background:#121a14;color:#e8efe3;font-family:Arial,sans-serif}
@@ -15,171 +14,108 @@ input,select{width:100%;margin-top:4px;padding:11px 10px;font-size:16px;border:1
 .court{margin-top:22px;padding:22px 16px;border-radius:14px;background:#1d2a20;text-align:center}
 .big{font-size:64px;font-weight:700;color:#8fd16a}
 .big small{font-size:22px;color:#93a395;font-weight:400}
-.dots{display:flex;justify-content:center;gap:10px;margin:16px 0}
-.dots i{width:22px;height:22px;border-radius:50%;border:2px solid #33453a}
+.dots{display:flex;justify-content:center;gap:7px;margin:16px 0}
+.dots i{width:18px;height:18px;border-radius:50%;border:2px solid #33453a}
 .dots i.on{background:#c9e23a;border-color:#c9e23a}
 button{width:100%;padding:15px;font-size:17px;font-weight:700;border:0;border-radius:10px;background:#8fd16a;color:#121a14}
 .opt{background:#1d2a20;color:#e8efe3;font-size:14px;font-weight:400;text-align:left;padding:10px;margin-top:6px;border:1px solid #33453a}
-#msg,#hz,#sinfo{font-size:13px;color:#93a395;margin:6px 0}
 .chip{width:auto;display:inline-block;padding:8px 14px;margin:6px 6px 0 0;font-size:15px;font-weight:400;background:#1d2a20;color:#e8efe3;border:1px solid #33453a;border-radius:20px}
+#msg,#hz,#sinfo{font-size:13px;color:#93a395;margin:6px 0}
 </style></head><body><main>
 <h1>Saitenhärte-Messer</h1>
 <div class="grid">
-<label class="full">Saite suchen (optional, z.B. "solinco hyper")<input id="q" type="search" autocomplete="off"></label>
+<label class="full">Schläger<select id="rk"></select></label>
+<label>Name<input id="rname"></label>
+<label>Saitenmuster<input id="rpat" placeholder="z.B. 16x19"></label>
+<label>Soll Haupt (kg)<input id="t1" type="number" step="0.1"></label>
+<label>Soll Quer (kg)<input id="t2" type="number" step="0.1" placeholder="leer = gleich"></label>
+<label class="full">Bespannt am<input id="sdate" type="datetime-local"></label>
+<label class="full">Saite suchen (Hauptsaite)<input id="q" type="search" autocomplete="off"></label>
 <div class="full"><div id="res"></div><div id="sinfo">Ohne Auswahl wird der Materialstandard genutzt.</div></div>
-<label>Kopfgröße (sq in)<input id="head" type="number" value="100"></label>
-<label>Saitendicke (mm)<input id="gauge" type="number" value="1.25" step="0.01"></label>
+<label>Kopfgröße (sq in)<input id="head" type="number"></label>
+<label>Saitendicke (mm)<input id="gauge" type="number" step="0.01"></label>
 <div class="full" id="gch"></div>
 <label class="full">Material<select id="mat"><option value="1.14">Nylon / Synthetik</option><option value="1.38">Polyester</option><option value="1.30">Naturdarm</option></select></label>
 <label>Steifigkeit (lb/in)<input id="stiff" type="number" placeholder="leer = Standard"></label>
-<label>Kalibrierfaktor<input id="cal" type="number" value="1.00" step="0.01"></label>
-<label class="full"><input id="hyb" type="checkbox" style="width:auto;margin-right:8px">Hybridbespannung (Quersaiten anders). Oben = Hauptsaiten</label>
+<label>Kalibrierfaktor<input id="cal" type="number" step="0.01"></label>
+<label class="full"><input id="hyb" type="checkbox" style="width:auto;margin-right:8px">Hybridbespannung (oben = Hauptsaiten)</label>
 <div id="b2" class="full" style="display:none"><div class="grid">
 <label class="full">Quersaite suchen<input id="q2" type="search" autocomplete="off"></label>
 <div class="full"><div id="res2"></div><div id="sinfo2" style="font-size:13px;color:#93a395"></div></div>
-<label>Dicke Quersaite (mm)<input id="gauge2" type="number" value="1.25" step="0.01"></label>
-<label>Steifigkeit Quer (lb/in)<input id="stiff2" type="number" placeholder="leer = Standard"></label>
-<label class="full">Material Quersaite<select id="mat2"><option value="1.14">Nylon / Synthetik</option><option value="1.38">Polyester</option><option value="1.30">Naturdarm</option></select></label>
+<label>Dicke Quer (mm)<input id="gauge2" type="number" step="0.01"></label>
+<label>Steifigkeit Quer<input id="stiff2" type="number" placeholder="leer = Standard"></label>
+<label class="full">Material Quer<select id="mat2"><option value="1.14">Nylon / Synthetik</option><option value="1.38">Polyester</option><option value="1.30">Naturdarm</option></select></label>
 <div class="full" id="gch2"></div>
 </div></div>
 </div>
+<button class="opt" id="newbsp" style="text-align:center">Neu bespannt (neue Messreihe starten)</button>
+<button class="opt" id="delrk" style="text-align:center">Diesen Schläger löschen</button>
 <div class="court">
 <div class="big"><span id="kg">-</span> <small>kg</small></div>
-<div class="dots" id="dots"><i></i><i></i><i></i><i></i><i></i></div>
+<div class="dots" id="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <p id="msg">Bereit.</p>
 <button id="go">Messung starten</button>
 <div id="hz"></div>
-</div></main>
+<div style="font-size:12px;color:#93a395;margin-top:10px">Tipp: Dämpfer entfernen, Schläger fest halten und neben das Mikrofon, ruhiger Raum, immer an derselben Stelle schlagen.</div>
+<div id="cmp" style="display:none;margin-top:12px;text-align:left"><div id="cmpt" style="font-size:14px"></div>
+<button class="opt" id="sv" style="text-align:center">Messung speichern</button>
+<button class="opt" id="cb" style="text-align:center">Faktor aus Soll berechnen</button>
+<div style="font-size:12px;color:#93a395;margin-top:6px">Die Abweichung zum Soll ist nur aussagekräftig, wenn der Faktor an einem anderen Schläger gleicher Bauart bestimmt wurde. Berechnest du den Faktor aus dieser Messung, zeigt die App danach den Verlauf, aber nicht mehr, ob das Bespannen stimmte.</div></div>
+</div>
+<div id="hist" style="margin-top:16px"></div>
+<div id="arch" style="margin-top:16px"></div>
+</main>
 <script>
-var RAW=`Luxilon|4G 16 (1.30)|287|P
-Luxilon|4G 16L (1.25)|259|P
-Luxilon|4G Soft 1.25|217|P
-Luxilon|ALU Power 125/16L|209|P
-Luxilon|Big Banger Original 130/16|213|P
-Luxilon|Element 16L (1.25)|208|P
-Luxilon|Savage 16/1.27|234|P
-Luxilon|Natural Gut 1.25|82|G
-Babolat|RPM Blast 16|233|P
-Babolat|RPM Blast 17/1.25|234|P
-Babolat|RPM Blast 18 (1.20)|189|P
-Babolat|RPM Team 17 (1.25)|245|N+
-Babolat|Pro Hurricane Tour 16|227|P
-Babolat|Pro Hurricane 16|204|P
-Babolat|Hurricane Feel 16|250|P
-Babolat|Xcel 16|151|N
-Babolat|Origin 17|171|N
-Babolat|Addiction 16|167|N
-Babolat|Synthetic Gut 16 (1.30)|169|N
-Babolat|VS Natural Team Gut 17 (1.25)|92|G
-Babolat|Tonic + Natural Gut 16|99|G
-Wilson|Natural Gut 16|97|G
-Wilson|Natural Gut 17|81|G
-Wilson|Revolve 16 (1.30)|184|P
-Wilson|Revolve 17 (1.25)|192|P
-Wilson|Enduro Pro 16|219|P
-Wilson|Enduro Pro 17 (1.25)|227|N+
-Wilson|NXT 16|174|N
-Wilson|NXT 17|156|N
-Wilson|Sensation 16|169|N
-Wilson|Synthetic Gut Power 16 (1.30)|156|N
-Wilson|Ripspin 16|212|P
-Solinco|Hyper-G 16|219|P
-Solinco|Hyper-G 16L (1.25)|218|P
-Solinco|Hyper-G 17 (1.20)|195|P
-Solinco|Hyper-G Soft 16L (1.25)|172|P
-Solinco|Tour Bite 16|203|P
-Solinco|Tour Bite 16L (1.25)|238|P
-Solinco|Tour Bite 17|181|P
-Solinco|Tour Bite Soft 16L (1.25)|192|P
-Solinco|Confidential 16 (1.30)|222|P
-Solinco|Revolution 16|215|P
-Solinco|Barb Wire 16|214|P
-Solinco|Outlast 16|208|P
-Tecnifibre|Black Code 16|250|P
-Tecnifibre|Black Code 17|236|P
-Tecnifibre|Black Code 4S 16 (1.30)|243|P
-Tecnifibre|Razor Code 16 (1.30)|243|P
-Tecnifibre|Razor Code 17 (1.25)|229|P
-Tecnifibre|Pro Red Code 16|232|P
-Tecnifibre|Ice Code 16 (1.30)|221|P
-Tecnifibre|Multi-Feel 16|155|N+
-Tecnifibre|X-One Biphase 16|163|N+
-Tecnifibre|NRG2 16|158|N
-Head|Hawk 16 (1.30)|230|P
-Head|Hawk 17 (1.25)|205|P
-Head|Lynx 16 (1.30)|186|P
-Head|Lynx Tour 16 (1.30)|229|P
-Head|Sonic Pro 16|161|P
-Head|FXP Tour 16|117|N+
-Head|Velocity MLT 17 (1.25)|153|N
-Yonex|Poly Tour Pro 17 (1.20)|189|P
-Yonex|Poly Tour Pro Yellow 16 (1.30)|191|P
-Yonex|Poly Tour Spin 16L (1.25)|214|P
-Yonex|Poly Tour Strike 16L (1.25)|199|P
-Yonex|Poly Tour HS 16 (1.30)|214|P
-Prince|Tour XR 16 (1.30)|215|P
-Prince|Synthetic Gut Original 16|191|N
-Prince|Premier Control 16|158|N
-Gamma|Ocho 16 (1.30)|243|P
-Gamma|Moto 16|227|P
-Gamma|TNT2 16|171|N
-Gamma|Synthetic Gut 16|186|N
-Kirschbaum|Max Power 16 (1.30)|233|P
-Kirschbaum|Max Power 17 (1.25)|241|P
-Kirschbaum|Pro Line II 17 (1.25)|201|P
-Kirschbaum|Super Smash 16/1.30|222|P
-Kirschbaum|Competition 17 (1.25)|210|P
-Volkl|Cyclone 16|197|P
-Volkl|V-Torque 16|182|P
-Dunlop|Explosive Speed 17 (1.25)|250|P
-Dunlop|Black Widow 16|193|P
-Dunlop|Silk 16 (1.30)|147|N
-Pacific|Classic Natural Gut 16|100|G
-Pacific|Prime Natural Gut 16|85|G
-Gosen|Polylon 16|207|P
-Gosen|OG Sheep Micro 16|183|N
-Tourna|Big Hitter Silver 16|209|P
-Tourna|Big Hitter Blue 16|226|P
-Ashaway|MonoGut ZX 16|106|N+
-Signum Pro|Hyperion 16|220|P
-Signum Pro|Poly Plasma 17 (1.23)|198|P`;
-var DB=RAW.split("\n").map(function(l){var p=l.split("|");return [p[0],p[1],parseInt(p[2]),p[3]]});
-fetch('strings.json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){if(d.length>100){DB=d;$('sinfo').textContent=d.length+' Saiten geladen. Ohne Auswahl wird der Materialstandard genutzt.'}}).catch(function(){});
-var ctx,an,stream,running=false,hits=[],raf;
+var N=9,DB=[],ctx,an,stream,running=false,hits=[],raf,last=null,S={list:[],cur:0};
 function $(i){return document.getElementById(i)}
-function dots(n){var d=$('dots').children;for(var i=0;i<5;i++)d[i].className=i<n?'on':''}
-var IDS=['head','gauge','mat','stiff','cal','hyb','gauge2','mat2','stiff2'];
-function save(){IDS.forEach(function(id){try{var e=$(id);localStorage.setItem('f_'+id,e.type==='checkbox'?(e.checked?'1':'0'):e.value)}catch(x){}})}
-IDS.forEach(function(id){try{var v=localStorage.getItem('f_'+id),e=$(id);
- if(v!==null){if(e.type==='checkbox')e.checked=(v==='1');else e.value=v}}catch(x){}
- $(id).addEventListener('change',save)});
+function dots(n){var d=$('dots').children;for(var i=0;i<d.length;i++)d[i].className=i<n?'on':''}
+var IDS=['rname','rpat','t1','t2','sdate','head','gauge','mat','stiff','cal','hyb','gauge2','mat2','stiff2'];
+function store(){try{localStorage.setItem('rk2',JSON.stringify(S))}catch(e){}}
+function now16(d){return new Date(d-new Date(d).getTimezoneOffset()*6e4).toISOString().slice(0,16)}
+function mk(n,p,t1,t2,h,g,m,st,cal,q,sd){return {rname:n,rpat:p,t1:t1,t2:t2,sdate:sd,head:h,gauge:g,mat:m,stiff:st,cal:cal,hyb:'0',gauge2:'1.25',mat2:'1.38',stiff2:'',q:q,q2:'',log:[]}}
+try{S=JSON.parse(localStorage.getItem('rk2'))||S}catch(e){}
+if(!S.list||!S.list.length){S={cur:0,list:[
+ mk('Wilson Blade 98S','18x16',23,22,98,'1.25','1.38',218,'0.94','Head Lynx Tour 17 (1.25)',''),
+ mk('Head Radical Rev','16x19',24,'',98,'1.23','1.38',185,'0.85','MSV Co.-Focus 16L','')]};store()}
+if(S.mv!==2){S.list.forEach(function(r){r.cal=(parseFloat(r.cal)*1.1678).toFixed(2)});S.mv=2;store()}
+fetch('strings.json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){if(d.length>100){DB=d;$('sinfo').textContent=d.length+' Saiten verfügbar. Ohne Auswahl wird der Materialstandard genutzt.'}}).catch(function(){$('sinfo').textContent='Saitenliste nicht verfügbar. Steifigkeit manuell eingeben.'});
+
+function opts(){var s=$('rk');s.innerHTML='';S.list.forEach(function(r,i){var o=document.createElement('option');o.value=i;o.textContent=r.rname||('Schläger '+(i+1));s.appendChild(o)});
+ var n=document.createElement('option');n.value='new';n.textContent='+ Neuer Schläger';s.appendChild(n);s.value=S.cur}
 function showB2(){$('b2').style.display=$('hyb').checked?'block':'none'}
-$('hyb').addEventListener('change',showB2);showB2();
+function fill(){var r=S.list[S.cur];last=null;$('kg').textContent='-';$('hz').textContent='';$('msg').textContent='Bereit.';dots(0);
+ IDS.forEach(function(id){var e=$(id);if(e.type==='checkbox')e.checked=(r[id]==='1');else e.value=(r[id]==null?'':r[id])});
+ $('q').value=r.q||'';$('q2').value=r.q2||'';$('res').innerHTML='';$('res2').innerHTML='';$('gch').innerHTML='';$('gch2').innerHTML='';
+ showB2();res();hist();arch()}
+function grab(){var r=S.list[S.cur];IDS.forEach(function(id){var e=$(id);r[id]=e.type==='checkbox'?(e.checked?'1':'0'):e.value});
+ r.q=$('q').value;r.q2=$('q2').value;store();opts()}
+IDS.concat(['q','q2']).forEach(function(id){$(id).addEventListener('change',grab)});
+$('hyb').addEventListener('change',showB2);
+$('rk').onchange=function(){
+ if(this.value==='new'){S.list.push(mk('Neuer Schläger','',24,'',98,'1.25','1.38','','1.00','',now16(Date.now())));S.cur=S.list.length-1}
+ else S.cur=+this.value;
+ store();opts();fill()};
+$('delrk').onclick=function(){if(S.list.length>1&&confirm('Diesen Schläger mit allen Messungen löschen?')){S.list.splice(S.cur,1);S.cur=0;store();opts();fill()}};
+$('newbsp').onclick=function(){var r=S.list[S.cur];
+ if(!confirm('Neue Bespannung starten? Die bisherigen Messungen werden als frühere Bespannung abgelegt.'))return;
+ r.arch=r.arch||[];if(r.log.length)r.arch.push({sd:r.sdate,t1:r.t1,t2:r.t2,log:r.log});
+ r.log=[];r.sdate=now16(Date.now());store();fill()};
 
 var GR={'15':[1.35,1.38,1.40],'15L':[1.32,1.35,1.37],'16':[1.28,1.30,1.32],'16L':[1.24,1.25,1.27],'17':[1.20,1.24,1.25,1.27],'17L':[1.18,1.20,1.22],'18':[1.15,1.18,1.20],'19':[1.10,1.12]};
-var cur={'':null,'2':null};
-function remember(s){if(cur[s]){try{localStorage.setItem('g_'+cur[s],$('gauge'+s).value)}catch(e){}}}
-$('gauge').addEventListener('change',function(){remember('')});
-$('gauge2').addEventListener('change',function(){remember('2')});
 function chips(a,s){var b=$('gch'+s);b.innerHTML='';if(!a)return;
  var t=document.createElement('div');t.style.cssText='font-size:13px;color:#93a395';
- t.textContent='Dicke nicht exakt bekannt. Wähle den Wert vom Saitenpaket:';b.appendChild(t);
+ t.textContent='Dicke nicht exakt bekannt. Wert vom Saitenpaket wählen:';b.appendChild(t);
  a.forEach(function(v){var c=document.createElement('button');c.className='chip';c.textContent=v.toFixed(2);
-  c.onclick=function(){$('gauge'+s).value=v;remember(s);save()};b.appendChild(c)})}
+  c.onclick=function(){$('gauge'+s).value=v;grab()};b.appendChild(c)})}
 function pick(x,s){
- cur[s]=x[0]+' '+x[1];
  $('stiff'+s).value=x[2];
  $('mat'+s).value=x[3].charAt(0)==='P'?'1.38':(x[3]==='G'?'1.30':'1.14');
- var g=null,ch=null,saved=null,m=x[1].match(/1\.\d{1,3}/);
- try{saved=localStorage.getItem('g_'+cur[s])}catch(e){}
- if(saved)g=parseFloat(saved);
- else if(m&&parseFloat(m[0])>=1.0&&parseFloat(m[0])<=1.5)g=parseFloat(m[0]);
- else{var n=x[1].match(/\b(1[5-9])(L?)\b/);
-  if(n&&GR[n[1]+n[2]]){ch=GR[n[1]+n[2]];g=ch[Math.floor(ch.length/2)]}}
+ var g=null,ch=null,m=x[1].match(/1\.\d{1,3}/);
+ if(m&&parseFloat(m[0])>=1&&parseFloat(m[0])<=1.5)g=parseFloat(m[0]);
+ else{var n=x[1].match(/\b(1[5-9])(L?)\b/);if(n&&GR[n[1]+n[2]]){ch=GR[n[1]+n[2]];g=ch[Math.floor(ch.length/2)]}}
  if(g)$('gauge'+s).value=g;
- chips(ch,s);
- $('q'+s).value=cur[s];$('res'+s).innerHTML='';
- $('sinfo'+s).textContent='Gewählt: '+cur[s]+' ('+x[2]+' lb/in).'+(ch?' Dicke geschätzt.':'');save()}
+ chips(ch,s);$('q'+s).value=x[0]+' '+x[1];$('res'+s).innerHTML='';
+ $('sinfo'+s).textContent='Gewählt: '+x[0]+' '+x[1]+' ('+x[2]+' lb/in).'+(ch?' Dicke geschätzt.':'');grab()}
 function add(x,s){var b=document.createElement('button');b.className='opt';
  b.textContent=x[0]+' '+x[1]+' ('+x[2]+')';b.onclick=function(){pick(x,s)};$('res'+s).appendChild(b)}
 function search(v,s){
@@ -194,53 +130,99 @@ $('q2').oninput=function(){search(this.value,'2')};
 function side(s){
  var d=parseFloat($('gauge'+s).value)/1000,rho=parseFloat($('mat'+s).value)*1000;
  var def={'1.14':160,'1.38':210,'1.30':92}[$('mat'+s).value];
- var S=parseFloat($('stiff'+s).value),corr=1;
- if(S>0)corr=Math.pow(S/def,-0.15);
+ var St=parseFloat($('stiff'+s).value),corr=1;
+ if(St>0)corr=Math.pow(St/def,-0.15);
  return {mu:rho*Math.PI*d*d/4,corr:corr}}
 function tension(f){
- var A=parseFloat($('head').value)*6.4516,L=1.34*Math.sqrt(A)/100;
+ var A=parseFloat($('head').value)*6.4516,L=1.24*Math.sqrt(A)/100;
  var cal=parseFloat($('cal').value)||1,a=side(''),mu=a.mu,corr=a.corr;
  if($('hyb').checked){var b=side('2');mu=(a.mu+b.mu)/2;corr=(a.corr+b.corr)/2}
  return 4*L*L*f*f*mu*cal*corr/9.80665}
 function peak(buf,sr,n){
- var lo=Math.floor(250*n/sr),hi=Math.floor(1500*n/sr),m=-1e9,k=lo;
- for(var i=lo;i<hi;i++)if(buf[i]>m){m=buf[i];k=i}
- if(m<-90)return null;
+ var lo=Math.floor(350*n/sr),hi=Math.floor(750*n/sr),m=-1e9,k=lo,s=0;
+ for(var i=lo;i<hi;i++){s+=buf[i];if(buf[i]>m){m=buf[i];k=i}}
+ if(m<-90||m-s/(hi-lo)<10)return null;
  var a=buf[k-1],b=buf[k],c=buf[k+1],p=0.5*(a-c)/(a-2*b+c);
  return (k+(isFinite(p)?p:0))*sr/n}
+function tmean(a){var n=a.length,m=a.reduce(function(x,y){return x+y},0)/n,
+ v=a.reduce(function(x,y){return x+(y-m)*(y-m)},0)/n,lim=Math.max(Math.sqrt(v),1);
+ var r=a.filter(function(x){return Math.abs(x-m)<=lim});if(r.length<3)r=a;
+ return {f:r.reduce(function(x,y){return x+y},0)/r.length,n:r.length}}
+
+function tgt(){var a=parseFloat($('t1').value),b=parseFloat($('t2').value);if(!(a>0))return null;return b>0?(a+b)/2:a}
+function fh(h){return h<48?h.toFixed(h<10?1:0)+' Std.':(h/24).toFixed(1)+' Tage'}
+function res(){var b=$('cmp');b.style.display=last?'block':'none';if(!last)return;
+ var t=tgt(),sd=$('sdate').value,x='';
+ if(sd)x+='Seit dem Bespannen: '+fh(Math.max(0,(Date.now()-new Date(sd).getTime())/36e5))+'. ';
+ if(t){var d=last.kg-t;x+='Soll Ø '+t.toFixed(1)+' kg, Abweichung '+(d>0?'+':'')+d.toFixed(1)+' kg ('+(d/t*100).toFixed(0)+' %).'}
+ $('cmpt').textContent=x}
+$('sv').onclick=function(){if(!last)return;var r=S.list[S.cur];r.log.push({t:Date.now(),kg:+last.kg.toFixed(1),f:Math.round(last.f)});store();hist()};
+$('cb').onclick=function(){var t=tgt();if(!last||!t)return;
+ var c=parseFloat($('cal').value)||1,n=(c*t/last.kg).toFixed(2);
+ if(confirm('Faktor von '+c+' auf '+n+' setzen? Das gilt nur, wenn direkt nach dem Bespannen gemessen wurde.')){
+  $('cal').value=n;grab();last.kg=last.kg*n/c;$('kg').textContent=last.kg.toFixed(1);res()}};
+function hist(){
+ var r=S.list[S.cur],L=r.log,b=$('hist');b.innerHTML='';
+ if(!L.length){b.innerHTML='<div style="font-size:13px;color:#93a395">Noch keine gespeicherten Messungen.</div>';return}
+ var t=tgt(),t0=r.sdate?new Date(r.sdate).getTime():L[0].t,W=300,H=120,P=14;
+ var xs=L.map(function(m){return Math.log(1+Math.max(0,(m.t-t0)/36e5))}),mx=Math.max.apply(null,xs.concat([1]));
+ var ys=L.map(function(m){return m.kg}),all=t?ys.concat([t]):ys,lo=Math.min.apply(null,all)-1,hi=Math.max.apply(null,all)+1;
+ function X(v){return P+v/mx*(W-2*P)}function Y(v){return H-P-(v-lo)/(hi-lo)*(H-2*P)}
+ var pts=L.map(function(m,i){return X(xs[i]).toFixed(1)+','+Y(m.kg).toFixed(1)}).join(' ');
+ var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;background:#1d2a20;border-radius:8px">'+
+  (t?'<line x1="'+P+'" x2="'+(W-P)+'" y1="'+Y(t)+'" y2="'+Y(t)+'" stroke="#93a395" stroke-dasharray="4"/>':'')+
+  '<polyline points="'+pts+'" fill="none" stroke="#8fd16a" stroke-width="2"/>'+
+  L.map(function(m,i){return '<circle cx="'+X(xs[i])+'" cy="'+Y(m.kg)+'" r="3.5" fill="#c9e23a"/>'}).join('')+'</svg>';
+ var h='<div style="font-size:15px;font-weight:700">Verlauf: '+(r.rname||'')+'</div><div style="font-size:12px;color:#93a395;margin:4px 0 8px">Zeitachse gestaucht, gestrichelt = Soll. Prozent '+(t?'zum Soll':'zur ersten Messung')+'.</div>'+svg;
+ L.forEach(function(m){var hh=(m.t-t0)/36e5,base=t||L[0].kg,p=(m.kg-base)/base*100,d=new Date(m.t);
+  h+='<div style="display:flex;justify-content:space-between;font-size:14px;padding:6px 0;border-bottom:1px solid #33453a"><span>'+
+   d.toLocaleString('de-DE',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+(r.sdate?' · '+fh(Math.max(0,hh)):'')+'</span><span>'+
+   m.kg.toFixed(1)+' kg ('+(p>0?'+':'')+p.toFixed(0)+' %)</span></div>'});
+ h+='<button class="opt" id="dl" style="text-align:center">Letzte Messung löschen</button>';
+ b.innerHTML=h;$('dl').onclick=function(){L.pop();store();hist()}}
+function arch(){var r=S.list[S.cur],A=r.arch||[],b=$('arch'),h='';
+ if(!A.length){b.innerHTML='';return}
+ h='<div style="font-size:15px;font-weight:700">Frühere Bespannungen</div><div style="font-size:12px;color:#93a395;margin:4px 0 8px">Erste Messung nach dem Bespannen, Soll und Abweichung. Die Hz sind unabhängig vom Faktor.</div>';
+ A.slice().reverse().forEach(function(s){var f=s.log[0],a=parseFloat(s.t1),c=parseFloat(s.t2),t=a>0?(c>0?(a+c)/2:a):null;
+  var d=s.sd?new Date(s.sd).toLocaleDateString('de-DE'):'ohne Datum';
+  h+='<div style="display:flex;justify-content:space-between;font-size:14px;padding:6px 0;border-bottom:1px solid #33453a"><span>'+d+(t?' · Soll '+t.toFixed(1):'')+' · '+f.f+' Hz</span><span>'+f.kg.toFixed(1)+' kg'+(t?' ('+((f.kg-t)>0?'+':'')+(f.kg-t).toFixed(1)+')':'')+'</span></div>'});
+ b.innerHTML=h}
+
 function stop(){running=false;cancelAnimationFrame(raf);
  if(stream)stream.getTracks().forEach(function(t){t.stop()});
  if(ctx)ctx.close();ctx=null;$('go').textContent='Neue Messung'}
 function finish(){stop();
- var s=hits.slice().sort(function(a,b){return a-b}),f=s[2];
- $('kg').textContent=tension(f).toFixed(1);
- $('hz').textContent='Median '+f.toFixed(0)+' Hz | '+hits.map(function(h){return h.toFixed(0)}).join(', ');
- $('msg').textContent='Fertig.'}
+ if(hits.length<3){$('msg').textContent='Zu wenige gültige Schläge, bitte nochmal.';return}
+ var t=tmean(hits);last={kg:tension(t.f),f:t.f};
+ $('kg').textContent=last.kg.toFixed(1);
+ $('hz').textContent='Mittel '+t.f.toFixed(1)+' Hz ('+t.n+' von '+hits.length+' Schlägen)';
+ $('msg').textContent='Fertig.';res()}
 async function start(){
- save();hits=[];dots(0);$('kg').textContent='-';$('hz').textContent='';
+ grab();hits=[];last=null;$('cmp').style.display='none';dots(0);$('kg').textContent='-';$('hz').textContent='';
  try{stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}})}
  catch(e){$('msg').textContent='Kein Mikrofonzugriff: '+(e&&e.name);return}
  ctx=new (window.AudioContext||window.webkitAudioContext)();
  an=ctx.createAnalyser();an.fftSize=8192;an.smoothingTimeConstant=0;
  ctx.createMediaStreamSource(stream).connect(an);
  var td=new Float32Array(1024),fd=new Float32Array(an.frequencyBinCount);
- var onset=0,last=0;
- running=true;$('go').textContent='Abbrechen';$('msg').textContent='Schlag 1 von 5: Tippe auf die Saiten.';
+ var onset=0,lt=0;
+ running=true;$('go').textContent='Beenden (min. 3 Schläge)';$('msg').textContent='Schlag 1 von '+N+': Tippe auf die Saiten.';
  (function loop(){
   if(!running)return;
   var now=performance.now();an.getFloatTimeDomainData(td);
   var r=0;for(var i=0;i<td.length;i++)r+=td[i]*td[i];r=Math.sqrt(r/td.length);
-  if(!onset&&r>0.03&&now-last>600)onset=now;
+  if(!onset&&r>0.03&&now-lt>600)onset=now;
   if(onset&&now-onset>140){
    an.getFloatFrequencyData(fd);
-   var f=peak(fd,ctx.sampleRate,an.fftSize);onset=0;last=now;
+   var f=peak(fd,ctx.sampleRate,an.fftSize);onset=0;lt=now;
    if(f){hits.push(f);dots(hits.length);
-    if(hits.length>=5){finish();return}
-    $('msg').textContent='Schlag '+(hits.length+1)+' von 5.'}
-   else $('msg').textContent='Ton zu leise, bitte nochmal.'}
+    if(hits.length>=N){finish();return}
+    $('msg').textContent='Schlag '+(hits.length+1)+' von '+N+'.'}
+   else $('msg').textContent='Ton unklar oder zu leise, bitte nochmal.'}
   raf=requestAnimationFrame(loop)})()}
 $('go').onclick=function(){
- if(running){stop();$('msg').textContent='Abgebrochen.';dots(0);return}
+ if(running){if(hits.length>=3)finish();else{stop();$('msg').textContent='Abgebrochen.';dots(0)}return}
  start()};
+opts();fill();
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(function(){});
 </script></body></html>
