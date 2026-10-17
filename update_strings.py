@@ -56,8 +56,12 @@ for r in rows:
         break
     try:
         g, mm = find(get(r[4]))
-    except Exception as e:
-        print("Fehler:", key, e); time.sleep(PAUSE); continue
+        except Exception as e:
+        print("Fehler:", key, e)
+        if "404" in str(e) or "410" in str(e):
+            gj[key] = {"mm": None, "src": r[4], "err": "nicht gefunden"}
+            new += 1
+        time.sleep(PAUSE); continue
     w = re.search(r"\b(1[5-9]L?)\b", r[1])
     if mm and w and g and g != w.group(1).upper():
         mm = None
