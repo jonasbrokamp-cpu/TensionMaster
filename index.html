@@ -66,7 +66,7 @@ button{width:100%;padding:15px;font-size:17px;font-weight:700;border:0;border-ra
 <div id="arch" style="margin-top:16px"></div>
 </main>
 <script>
-var N=9,DB=[],ctx,an,stream,running=false,hits=[],raf,last=null,S={list:[],cur:0};
+var N=9,GJ={},DB=[],ctx,an,stream,running=false,hits=[],raf,last=null,S={list:[],cur:0};
 function $(i){return document.getElementById(i)}
 function dots(n){var d=$('dots').children;for(var i=0;i<d.length;i++)d[i].className=i<n?'on':''}
 var IDS=['rname','rpat','t1','t2','sdate','head','gauge','mat','stiff','cal','hyb','gauge2','mat2','stiff2'];
@@ -80,6 +80,7 @@ if(!S.list||!S.list.length){S={cur:0,list:[
 if(S.mv!==2){S.list.forEach(function(r){r.cal=(parseFloat(r.cal)*1.1678).toFixed(2)});S.mv=2;store()}
 fetch('strings.json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){if(d.length>100){DB=d;$('sinfo').textContent=d.length+' Saiten verfügbar. Ohne Auswahl wird der Materialstandard genutzt.'}}).catch(function(){$('sinfo').textContent='Saitenliste nicht verfügbar. Steifigkeit manuell eingeben.'});
 
+fetch('gauges.json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){GJ=d}).catch(function(){});
 function opts(){var s=$('rk');s.innerHTML='';S.list.forEach(function(r,i){var o=document.createElement('option');o.value=i;o.textContent=r.rname||('Schläger '+(i+1));s.appendChild(o)});
  var n=document.createElement('option');n.value='new';n.textContent='+ Neuer Schläger';s.appendChild(n);s.value=S.cur}
 function showB2(){$('b2').style.display=$('hyb').checked?'block':'none'}
