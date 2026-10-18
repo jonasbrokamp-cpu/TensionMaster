@@ -56,7 +56,7 @@ for r in rows:
         break
     try:
         g, mm = find(get(r[4]))
-        except Exception as e:
+    except Exception as e:
         print("Fehler:", key, e)
         if "404" in str(e) or "410" in str(e):
             gj[key] = {"mm": None, "src": r[4], "err": "nicht gefunden"}
