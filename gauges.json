@@ -1,19 +1,92 @@
 {
+"Alien|Black Diamond 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-ABD16.html"
+},
 "Alpha|Gut 2000 16": {
 "mm": 1.33,
 "src": "https://www.tennis-warehouse.com/descpage-AG200016.html"
+},
+"Ashaway|Dynamite 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-ADYNA.html"
+},
+"Ashaway|Dynamite Soft 18": {
+"mm": 1.15,
+"src": "https://www.tennis-warehouse.com/descpage-D18SOFT.html"
 },
 "Ashaway|Liberty 16": {
 "mm": 1.3,
 "src": "https://www.tennis-warehouse.com/descpage-ASHLIB.html"
 },
+"Ashaway|MonoGut 16L": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-MONOGUT16.html"
+},
+"Ashaway|MonoGut 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-MONOGUT17.html"
+},
+"Ashaway|MonoGut ZX 16": {
+"mm": 1.27,
+"src": "https://www.tennis-warehouse.com/descpage-ZYEXMONO16.html"
+},
 "Ashaway|Synthetic Gut 16": {
 "mm": 1.3,
 "src": "https://www.tennis-warehouse.com/descpage-ASH16.html"
 },
+"Babolat|Addiction 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-BADD16.html"
+},
+"Babolat|Addiction 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-BADD17.html"
+},
+"Babolat|Origin 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-BORIG17.html"
+},
+"Babolat|Pro Hurricane 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-BH16.html"
+},
+"Babolat|Pro Hurricane 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-BH17.html"
+},
+"Babolat|Pro Hurricane 18": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-BH18.html"
+},
+"Babolat|Pro Hurricane Tour 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-BH16T.html"
+},
+"Babolat|Pro Hurricane Tour 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-BH17T.html"
+},
 "Babolat|RPM Blast 16": {
 "mm": 1.3,
 "src": "https://www.tennis-warehouse.com/descpage-BRPMB16.html"
+},
+"Babolat|RPM Blast Rough 15L": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-BRPMBR5.html"
 },
 "Babolat|RPM Blast Rough 16": {
 "mm": 1.3,
@@ -27,17 +100,98 @@
 "mm": 1.3,
 "src": "https://www.tennis-warehouse.com/descpage-BRPMT16.html"
 },
+"Babolat|SG SpiralTek 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-BST16.html"
+},
+"Babolat|SpiralTek 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-BST17.html"
+},
+"Babolat|Tonic + Natural Gut 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-BTGUT16.html"
+},
+"Babolat|VS Natural ThermoGut 16 Touch": {
+"mm": 1.3,
+"src": "https://www.tennis-warehouse.com/descpage-BNG16.html"
+},
+"Babolat|Xcel 16": {
+"mm": 1.3,
+"src": "https://www.tennis-warehouse.com/descpage-NBXCEL16.html"
+},
+"Babolat|Xcel French Open Black 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-BXCELRG.html"
+},
+"Babolat|Xcel Premium 17": {
+"mm": 1.25,
+"src": "https://www.tennis-warehouse.com/descpage-NBXCEL17.html"
+},
+"Boris Becker|Bomber 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-BBB16.html"
+},
+"Boris Becker|Bomber 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-BBB17.html"
+},
+"Diadem|Elite XT 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-DEXT16.html"
+},
+"Diadem|Elite XT 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-DEXT17.html"
+},
+"Dunlop|Black Widow 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-DBW16.html"
+},
 "Dunlop|Black Widow 17": {
 "mm": 1.26,
 "src": "https://www.tennis-warehouse.com/descpage-DBW17.html"
+},
+"Dunlop|Explosive 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-DXP16.html"
+},
+"Dunlop|Hexy Fiber 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-DHF16.html"
+},
+"Dunlop|Hexy Fiber 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-DHF17.html"
 },
 "Dunlop|S-Gut 17": {
 "mm": 1.25,
 "src": "https://www.tennis-warehouse.com/descpage-DSG17.html"
 },
+"Dunlop|Silk 17": {
+"mm": 1.22,
+"src": "https://www.tennis-warehouse.com/descpage-DSS17.html"
+},
 "Forten|Sweet 16": {
 "mm": 1.3,
 "src": "https://www.tennis-warehouse.com/descpage-F16.html"
+},
+"Gamma|Glide Cross String 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-GGX.html"
 },
 "Gamma|Live Wire 16": {
 "mm": 1.32,
@@ -51,6 +205,44 @@
 "mm": 1.29,
 "src": "https://www.tennis-warehouse.com/descpage-GMOTO16.html"
 },
+"Gamma|Poly Z 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-GZPZ.html"
+},
+"Gamma|Prodigy 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-GPROD16.html"
+},
+"Gamma|Professional 16": {
+"mm": 1.32,
+"src": "https://www.tennis-warehouse.com/descpage-GLWPRO16.html"
+},
+"Gamma|Professional 17": {
+"mm": 1.27,
+"src": "https://www.tennis-warehouse.com/descpage-GLWPRO17.html"
+},
+"Gamma|Professional Spin 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-GLWPROS16.html"
+},
+"Gamma|RZR Rx 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-GRRXBK.html"
+},
+"Gamma|RZR Rx 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-GRRXBK17.html"
+},
+"Gamma|Revelation 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-GREV16.html"
+},
 "Gamma|Synthetic Gut 16": {
 "mm": 1.3,
 "src": "https://www.tennis-warehouse.com/descpage-G16.html"
@@ -59,9 +251,54 @@
 "mm": 1.32,
 "src": "https://www.tennis-warehouse.com/descpage-TNT16.html"
 },
+"Gamma|TNT2 Rx 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-TNTRX.html"
+},
+"Gamma|TNT2 Touch 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-TNT2T16.html"
+},
 "Gamma|WearGuard Synthetic Gut 16": {
 "mm": 1.3,
 "src": "https://www.tennis-warehouse.com/descpage-GWG16.html"
+},
+"Gamma|Zo Twist 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-GZOT16NA.html"
+},
+"Gamma|Zo Verve 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-GZOV17.html"
+},
+"Gosen|A.K. Control 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-GAKC16.html"
+},
+"Gosen|AK Pro 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-STAK16.html"
+},
+"Gosen|AK Pro 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-STAKP17.html"
+},
+"Gosen|Nanocubic 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-NANOCUB16.html"
+},
+"Gosen|Nanosilver 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-NANOSLVR17.html"
 },
 "Gosen|OG Sheep Micro 17": {
 "mm": 1.22,
@@ -83,6 +320,35 @@
 "mm": null,
 "src": "https://www.tennis-warehouse.com/descpage-GSW17BK.html"
 },
+"Gosen|TecGut Remplir 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-GTGREMP16.html"
+},
+"Head|FXP Power 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-HFXPP16.html"
+},
+"Head|FXP Power 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-HFXPP17.html"
+},
+"Head|FXP Tour 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-HFXPT16.html"
+},
+"Head|Hawk Rough 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-HHR.html"
+},
+"Head|RIP Control 16": {
+"mm": 1.3,
+"src": "https://www.tennis-warehouse.com/descpage-RCON16.html"
+},
 "Head|Sonic Pro 16": {
 "mm": 1.3,
 "src": "https://www.tennis-warehouse.com/descpage-SONIC16.html"
@@ -91,25 +357,230 @@
 "mm": 1.25,
 "src": "https://www.tennis-warehouse.com/descpage-SONIC17.html"
 },
+"Head|Sonic Pro Edge 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-HSPE16.html"
+},
+"Head|Synthetic Gut PPS 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-HPPS16.html"
+},
+"IsoSpeed|Axon Mono 16L": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-ISOAX16L.html"
+},
+"IsoSpeed|Axon Multi 16L": {
+"mm": 1.25,
+"src": "https://www.tennis-warehouse.com/descpage-ISOAXMUL16L.html"
+},
 "IsoSpeed|Black Fire 17": {
 "mm": 1.25,
 "src": "https://www.tennis-warehouse.com/descpage-ISOBF16.html"
+},
+"IsoSpeed|Control 16": {
+"mm": 1.3,
+"src": "https://www.tennis-warehouse.com/descpage-ISOC16.html"
+},
+"IsoSpeed|Control Classic 16": {
+"mm": 1.3,
+"src": "https://www.tennis-warehouse.com/descpage-ISOCC16.html"
+},
+"IsoSpeed|Energetic 17": {
+"mm": 1.2,
+"src": "https://www.tennis-warehouse.com/descpage-ISOEN17.html"
+},
+"IsoSpeed|Energetic Plus 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-ISOENP.html"
+},
+"IsoSpeed|Professional Classic 17": {
+"mm": 1.2,
+"src": "https://www.tennis-warehouse.com/descpage-ISOPC17.html"
+},
+"IsoSpeed|Pulse 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-ISOPUL16.html"
+},
+"IsoSpeed|Pulse 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-ISOPUL17.html"
 },
 "IsoSpeed|Pyramid 16": {
 "mm": 1.3,
 "src": "https://www.tennis-warehouse.com/descpage-ISOP16.html"
 },
+"Kirschbaum|Spiky Shark 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-SHARK16.html"
+},
+"Kirschbaum|Spiky Shark 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-SHARK17.html"
+},
 "Kirschbaum|Touch Multifibre 16": {
 "mm": 1.3,
 "src": "https://www.tennis-warehouse.com/descpage-TMULTI16.html"
+},
+"Klip|Kicker 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-KICK16.html"
+},
+"Klip|Legend 16 Uncoated": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-KLIPLUC16.html"
 },
 "Luxilon|4G Rough 16L": {
 "mm": 1.25,
 "src": "https://www.tennis-warehouse.com/descpage-LUX4GR125.html"
 },
+"Luxilon|4G S 15": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-LUX4GS141.html"
+},
+"Luxilon|Adrenaline 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-LADR120.html"
+},
+"Luxilon|Big Banger ALU Power Fluoro 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-BALUFL.html"
+},
+"MSV|Co.-Focus 16L": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-MSVCF16.html"
+},
+"MSV|Focus Evo 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-FEVO16.html"
+},
+"MSV|Focus Evo 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-FEVO17.html"
+},
+"MSV|Hepta-Twist 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-HEPTW16WH.html"
+},
 "MSV|Hepta-Twist 17": {
 "mm": null,
 "src": "https://www.tennis-warehouse.com/descpage-HEPTW17WH.html"
+},
+"Pacific|Classic Natural Gut 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PNGC16.html"
+},
+"Pacific|PMX 16L": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PPMX16.html"
+},
+"Pacific|PMX 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PPMX17.html"
+},
+"Pacific|Poly Force 16L": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PPFO16.html"
+},
+"Pacific|Poly Force 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PPFO17.html"
+},
+"Pacific|Premium Power X 16L": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PPX16.html"
+},
+"Pacific|Prime Natural Gut 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PNGP16.html"
+},
+"Pacific|Prime Natural Gut 16L": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PNGP16L.html"
+},
+"Pacific|Tough Gut 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PTG16.html"
+},
+"Pacific|Tough Gut 16L": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PTG16L.html"
+},
+"Pacific|X Force 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PXF17.html"
+},
+"Pacific|X Force 18": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PXF18.html"
+},
+"Polyfibre|Hightec Premium 16L": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-HTP16L.html"
+},
+"Polyfibre|Hightec Premium 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-HTP17.html"
+},
+"Polyfibre|Poly Hightec 16L": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PHT16L.html"
+},
+"Polyfibre|Poly Hightec 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PHT17.html"
+},
+"Polyfibre|Poly Hightec 18": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PHT18.html"
+},
+"Polyfibre|TCS 16L": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-TCS16L.html"
+},
+"Polyfibre|TCS 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-TCS17.html"
+},
+"Prince|Beast XP 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PB16.html"
 },
 "Prince|Diablo Prism 17": {
 "mm": 1.25,
@@ -122,6 +593,35 @@
 "Prince|Lightning XX 17": {
 "mm": 1.25,
 "src": "https://www.tennis-warehouse.com/descpage-PLXX17.html"
+},
+"Prince|Premier Control 15L": {
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PPC15L.html"
+},
+"Prince|Premier Control 16": {
+"mm": 1.3,
+"src": "https://www.tennis-warehouse.com/descpage-PPC16.html"
+},
+"Prince|Premier Control 17": {
+"mm": 1.25,
+"src": "https://www.tennis-warehouse.com/descpage-PPC17.html"
+},
+"Prince|Premier Power 16": {
+"mm": 1.3,
+"src": "https://www.tennis-warehouse.com/descpage-PPPWR16.html"
+},
+"Prince|Premier Power 17": {
+"mm": 1.25,
+"src": "https://www.tennis-warehouse.com/descpage-PPPWR17.html"
+},
+"Prince|Premier Touch 16": {
+"mm": 1.3,
+"src": "https://www.tennis-warehouse.com/descpage-PPT16.html"
+},
+"Prince|Premier Touch 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PPT17.html"
 },
 "Prince|Syn Gut Original 16": {
 "mm": 1.3,
@@ -143,21 +643,56 @@
 "mm": 1.38,
 "src": "https://www.tennis-warehouse.com/descpage-T15.html"
 },
+"Prince|Tour XC 15L": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PTXC15L.html"
+},
 "Prince|Tour XC 16L": {
 "mm": 1.27,
 "src": "https://www.tennis-warehouse.com/descpage-PTXC16L.html"
+},
+"Prince|Tour XC 17L": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PTXC17L.html"
+},
+"Prince|Tour XP 15L": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PTXP15L.html"
 },
 "Prince|Tour XP 16": {
 "mm": 1.3,
 "src": "https://www.tennis-warehouse.com/descpage-PTXP16.html"
 },
+"Prince|Tour XS 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PTXS125.html"
+},
+"Prince|Tour XT 18": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-PTXT18.html"
+},
 "Prince|Tournament Nylon 15L": {
 "mm": 1.35,
 "src": "https://www.tennis-warehouse.com/descpage-PN.html"
 },
+"RS|RS Lyon 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-RSL17.html"
+},
 "Signum Pro|Hyperion 16": {
 "mm": 1.3,
 "src": "https://www.tennis-warehouse.com/descpage-SIGHYP160.html"
+},
+"Signum Pro|Poly Megaforce 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-SIGPPM16.html"
 },
 "Signum Pro|Poly-Plasma 16L": {
 "mm": 1.28,
@@ -223,6 +758,30 @@
 "mm": 1.18,
 "src": "https://www.tennis-warehouse.com/descpage-TBC18.html"
 },
+"Tecnifibre|Duramix HD 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-TDMHD16.html"
+},
+"Tecnifibre|Duramix HD 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-TDMHD17.html"
+},
+"Tecnifibre|E-Matrix 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-EMX16.html"
+},
+"Tecnifibre|E-Matrix 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-EMX17.html"
+},
+"Tecnifibre|Multi-Feel 16": {
+"mm": 1.3,
+"src": "https://www.tennis-warehouse.com/descpage-MF16.html"
+},
 "Tecnifibre|NRG2 16": {
 "mm": 1.32,
 "src": "https://www.tennis-warehouse.com/descpage-NRG16.html"
@@ -239,6 +798,16 @@
 "mm": 1.2,
 "src": "https://www.tennis-warehouse.com/descpage-TPRC18.html"
 },
+"Tecnifibre|Pro Red Code Wax 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-TPRCW17.html"
+},
+"Tecnifibre|TGV 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-TGV16.html"
+},
 "Tecnifibre|X-One Biphase 16": {
 "mm": 1.3,
 "src": "https://www.tennis-warehouse.com/descpage-X116.html"
@@ -246,6 +815,10 @@
 "Tecnifibre|X-One Biphase 17": {
 "mm": 1.24,
 "src": "https://www.tennis-warehouse.com/descpage-X117.html"
+},
+"Tecnifibre|X-One Biphase 18": {
+"mm": 1.18,
+"src": "https://www.tennis-warehouse.com/descpage-X118.html"
 },
 "Topspin|Cyber Blue 16": {
 "mm": 1.3,
@@ -262,6 +835,10 @@
 "Topspin|Cyber Flash 17": {
 "mm": 1.25,
 "src": "https://www.tennis-warehouse.com/descpage-TCF17.html"
+},
+"Topspin|Cyber Flash 17L": {
+"mm": 1.2,
+"src": "https://www.tennis-warehouse.com/descpage-TCF17L.html"
 },
 "Tourna|Big HItter Silver 16": {
 "mm": 1.3,
@@ -291,6 +868,16 @@
 "mm": 1.25,
 "src": "https://www.tennis-warehouse.com/descpage-UBIGHIT17.html"
 },
+"Tourna|Big Hitter Silver Rough 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-UBHITR.html"
+},
+"Tourna|Big Hitter Silver Rough 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-UBHIT17R.html"
+},
 "Tourna|Black Zone 16": {
 "mm": 1.3,
 "src": "https://www.tennis-warehouse.com/descpage-UBKZ16.html"
@@ -299,9 +886,39 @@
 "mm": 1.25,
 "src": "https://www.tennis-warehouse.com/descpage-UBKZ17.html"
 },
+"Tourna|Irradiated 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-TFIBER.html"
+},
+"Tourna|Irradiated 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-TFIBER17.html"
+},
+"Tourna|Quasi Gut 17": {
+"mm": 1.25,
+"src": "https://www.tennis-warehouse.com/descpage-TQG17.html"
+},
+"Tourna|Quasi-Gut 16": {
+"mm": 1.3,
+"src": "https://www.tennis-warehouse.com/descpage-TQG16.html"
+},
+"Tourna|Quasi-Gut Armor 16": {
+"mm": 1.3,
+"src": "https://www.tennis-warehouse.com/descpage-TQGA16.html"
+},
+"Tourna|Quasi-Gut Armor 17": {
+"mm": 1.25,
+"src": "https://www.tennis-warehouse.com/descpage-TQGA17.html"
+},
 "Tourna|Synthetic Gut Armor 16": {
 "mm": 1.3,
 "src": "https://www.tennis-warehouse.com/descpage-USGA16BK.html"
+},
+"Tourna|Synthetic Gut Armor 17": {
+"mm": 1.25,
+"src": "https://www.tennis-warehouse.com/descpage-USGA17BK.html"
 },
 "Volkl|Cyclone 16": {
 "mm": 1.3,
@@ -323,9 +940,29 @@
 "mm": 1.25,
 "src": "https://www.tennis-warehouse.com/descpage-VPF17.html"
 },
+"Volkl|V-Pro 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-VVPS16.html"
+},
+"Volkl|V-Pro 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-VVPS17.html"
+},
+"Volkl|V-Pro 18": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-VVPS18.html"
+},
 "Volkl|V-Torque 16": {
 "mm": 1.28,
 "src": "https://www.tennis-warehouse.com/descpage-VT16.html"
+},
+"Weiss Cannon|Blue Rock N Power": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-WBRP.html"
 },
 "Weiss Cannon|Silverstring 120": {
 "mm": 1.2,
@@ -334,6 +971,20 @@
 "Wilson|NXT 16": {
 "mm": 1.3,
 "src": "https://www.tennis-warehouse.com/descpage-NXT16.html"
+},
+"Wilson|NXT 17": {
+"mm": 1.24,
+"src": "https://www.tennis-warehouse.com/descpage-NXT17.html"
+},
+"Wilson|NXT Max 16": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-NXTMAX16.html"
+},
+"Wilson|Natural Gut 17": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-WNAT17.html"
 },
 "Wilson|Revolve Spin 16": {
 "mm": 1.3,
@@ -350,5 +1001,14 @@
 "Y-Tex|Quadro Twist 16L": {
 "mm": 1.26,
 "src": "https://www.tennis-warehouse.com/descpage-YTQTBK16L.html"
+},
+"Yonex|Poly Tour Air 16L": {
+"mm": 1.25,
+"src": "https://www.tennis-warehouse.com/descpage-YPTA125BL.html"
+},
+"Yonex|Poly Tour Tough 16L": {
+"err": "nicht gefunden",
+"mm": null,
+"src": "https://www.tennis-warehouse.com/descpage-YPTT125BK.html"
 }
 }

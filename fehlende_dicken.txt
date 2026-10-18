@@ -1,11 +1,9 @@
 Alien | Black Diamond 16 | P
 Ashaway | Dynamite 17 | N+
 Ashaway | Dynamite Soft 17 | N+
-Ashaway | Dynamite Soft 18 | N+
 Ashaway | Dynamite WB 16 | N+
 Ashaway | MonoGut 16L | P
 Ashaway | MonoGut 17 | P
-Ashaway | MonoGut ZX 16 | N+
 Babolat | Addiction 16 | N
 Babolat | Addiction 17 | N
 Babolat | Attraction 16 | N+
@@ -30,12 +28,9 @@ Babolat | SG SpiralTek 16 | N
 Babolat | SpiralTek 17 | N
 Babolat | Super Fine Play 16 | N
 Babolat | Tonic + Natural Gut 16 | G
-Babolat | VS Natural ThermoGut 16 Touch | G
-Babolat | Xcel 16 | N
 Babolat | Xcel French Open Black 16 | N
 Babolat | Xcel Power 16 | N
 Babolat | Xcel Power 17 | N
-Babolat | Xcel Premium 17 | N
 Boris Becker | Bomber 16 | P
 Boris Becker | Bomber 17 | P
 Diadem | Elite XT 16 | P
@@ -51,7 +46,6 @@ Dunlop | Explosive Synthetic Gut 17 | N
 Dunlop | Hexy Fiber 16 | N
 Dunlop | Hexy Fiber 17 | N
 Dunlop | M-Fil Tour 16 | N
-Dunlop | Silk 17 | N
 Dunlop | Synthetic Gut 16 | N
 Dunlop | Tour Performance 16 | N
 Dunlop | X-Life Synthetic 15L | N
@@ -63,8 +57,6 @@ Gamma | Glide Cross String 16 | N
 Gamma | Monoblast 16 | P
 Gamma | Poly Z 16 | P
 Gamma | Prodigy 16 | N
-Gamma | Professional 16 | N+
-Gamma | Professional 17 | N
 Gamma | Professional Spin 16 | N+
 Gamma | RZR Rx 16 | P
 Gamma | RZR Rx 17 | P
@@ -107,7 +99,6 @@ Head | Fibergel Power 17 | N
 Head | Fibergel Spin 16 | N
 Head | Hawk Rough 17 | P
 Head | PerfectControl 16 | PF
-Head | RIP Control 16 | N+
 Head | RIP PerfectPower 16 | N+
 Head | Sonic Pro Edge 16 | P
 Head | Synthetic Gut 16 | N
@@ -115,12 +106,7 @@ Head | Synthetic Gut PPS 16 | N
 Head | Ultra Tour 16 | P
 Head | Ultratour 17 | P
 IsoSpeed | Axon Mono 16L | P
-IsoSpeed | Axon Multi 16L | N+
-IsoSpeed | Control 16 | N+
-IsoSpeed | Control Classic 16 | PF
-IsoSpeed | Energetic 17 | N+
 IsoSpeed | Energetic Plus 16 | N+
-IsoSpeed | Professional Classic 17 | PF
 IsoSpeed | Pulse 16 | P
 IsoSpeed | Pulse 17 | P
 Kirschbaum | Helix 16 | P
@@ -176,15 +162,10 @@ Prince | Poly EXP 17 | P
 Prince | Poly Spin 3D | P
 Prince | Premier Control 15 | N
 Prince | Premier Control 15L | N
-Prince | Premier Control 16 | N
-Prince | Premier Control 17 | N
 Prince | Premier LT 17 | N
 Prince | Premier LT 18 | N
-Prince | Premier Power 16 | N
-Prince | Premier Power 17 | N
 Prince | Premier Power 18 | N
 Prince | Premier Touch 15L | N
-Prince | Premier Touch 16 | N
 Prince | Premier Touch 17 | N
 Prince | Premier W/ Softflex 17 | N
 Prince | Premier W/Softflex 16 | N
@@ -213,27 +194,19 @@ Tecnifibre | Duramix HD 16 | N+
 Tecnifibre | Duramix HD 17 | N+
 Tecnifibre | E-Matrix 16 | N+
 Tecnifibre | E-Matrix 17 | N
-Tecnifibre | Multi-Feel 16 | N+
 Tecnifibre | Polyspin 16L | P
 Tecnifibre | Pro Mix 16 | N+
 Tecnifibre | Pro Mix 17 | N+
 Tecnifibre | Pro Red Code Wax 17 | P
 Tecnifibre | TGV 16 | N+
 Tecnifibre | X-Code 16 | P
-Tecnifibre | X-One Biphase 18 | N
 Tecnifibre | XR3 16 | N+
 Tecnifibre | XR3 17 | N+
-Topspin | Cyber Flash 17L | P
 Tourna | Big Hitter 16 | P
 Tourna | Big Hitter Silver Rough 16 | P
 Tourna | Big Hitter Silver Rough 17 | P
 Tourna | Irradiated 16 | N
 Tourna | Irradiated 17 | N
-Tourna | Quasi Gut 17 | N
-Tourna | Quasi-Gut 16 | N
-Tourna | Quasi-Gut Armor 16 | N+
-Tourna | Quasi-Gut Armor 17 | N+
-Tourna | Synthetic Gut Armor 17 | N+
 Volkl | Gripper 16 | N
 Volkl | Gripper 17 | N
 Volkl | Power-Fiber II 18 | N
@@ -255,7 +228,6 @@ Wilson | Hollow Core Pro 16 | N
 Wilson | Hollow Core Pro 17 | N
 Wilson | K-Gut 16 | N
 Wilson | K-Gut Pro 16 | N
-Wilson | NXT 17 | N
 Wilson | NXT Max 16 | N
 Wilson | NXT OS | N
 Wilson | NXT Tour 16 | N
@@ -273,7 +245,6 @@ Wilson | Shock Shield 16 | N
 Wilson | Spin Cycle 16L | P
 Wilson | Stamina 16 | N
 Wilson | Synthetic Gut Extreme 17 | N
-Yonex | Poly Tour Air 16L | P
 Yonex | Poly Tour Tough 16L | P
 Yonex | Tournament 50 16L | N
 Yonex | Tournament 80 Spin 15L-16 | O
