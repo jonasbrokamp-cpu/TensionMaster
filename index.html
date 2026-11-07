@@ -1,90 +1,99 @@
 <!DOCTYPE html><html lang="de"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#121a14">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1712">
 <link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg">
 <title>Saitenhärte-Messer</title>
 <style>
-body{margin:0;background:#121a14;color:#e8efe3;font-family:Arial,sans-serif}
-main{max-width:480px;margin:0 auto;padding:20px 18px 40px}
-h1{font-size:26px;margin:0 0 14px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-label{display:block;font-size:13px;color:#93a395}
-input,select{width:100%;margin-top:4px;padding:11px 10px;font-size:16px;border:1px solid #33453a;border-radius:8px;background:#1d2a20;color:#e8efe3;box-sizing:border-box}
-.full{grid-column:1/-1}
-.court{margin-top:22px;padding:22px 16px;border-radius:14px;background:#1d2a20;text-align:center}
-.big{font-size:64px;font-weight:700;color:#8fd16a}
-.big small{font-size:22px;color:#93a395;font-weight:400}
-.dots{display:flex;justify-content:center;gap:7px;margin:16px 0}
-.dots i{width:18px;height:18px;border-radius:50%;border:2px solid #33453a}
-.dots i.on{background:#c9e23a;border-color:#c9e23a}
-button{width:100%;padding:15px;font-size:17px;font-weight:700;border:0;border-radius:10px;background:#8fd16a;color:#121a14}
-.opt{background:#1d2a20;color:#e8efe3;font-size:14px;font-weight:400;text-align:left;padding:10px;margin-top:6px;border:1px solid #33453a}
-.chip{width:auto;display:inline-block;padding:8px 14px;margin:6px 6px 0 0;font-size:15px;font-weight:400;background:#1d2a20;color:#e8efe3;border:1px solid #33453a;border-radius:20px}
-#msg,#hz,#sinfo{font-size:13px;color:#93a395;margin:6px 0}
-</style></head><body><main>
-<h1>Saitenhärte-Messer</h1>
-<div class="grid">
-<label class="full">Schläger<select id="rk"></select></label>
-<label>Name<input id="rname"></label>
-<label>Saitenmuster<input id="rpat" placeholder="z.B. 16x19"></label>
-<label>Soll Haupt (kg)<input id="t1" type="number" step="0.1"></label>
-<label>Soll Quer (kg)<input id="t2" type="number" step="0.1" placeholder="leer = gleich"></label>
-<label class="full">Bespannt am<input id="sdate" type="datetime-local"></label>
-<label class="full">Saite suchen (Hauptsaite)<input id="q" type="search" autocomplete="off"></label>
-<div class="full"><div id="res"></div><div id="sinfo">Ohne Auswahl wird der Materialstandard genutzt.</div></div>
-<label>Kopfgröße (sq in)<input id="head" type="number"></label>
-<label>Saitendicke (mm)<input id="gauge" type="number" step="0.01"></label>
-<div class="full" id="gch"></div>
-<label class="full">Material<select id="mat"><option value="1.14">Nylon / Synthetik</option><option value="1.38">Polyester</option><option value="1.30">Naturdarm</option></select></label>
-<label>Steifigkeit (lb/in)<input id="stiff" type="number" placeholder="leer = Standard"></label>
-<label>Kalibrierfaktor<input id="cal" type="number" step="0.01"></label>
-<label class="full"><input id="hyb" type="checkbox" style="width:auto;margin-right:8px">Hybridbespannung (oben = Hauptsaiten)</label>
-<div id="b2" class="full" style="display:none"><div class="grid">
-<label class="full">Quersaite suchen<input id="q2" type="search" autocomplete="off"></label>
-<div class="full"><div id="res2"></div><div id="sinfo2" style="font-size:13px;color:#93a395"></div></div>
-<label>Dicke Quer (mm)<input id="gauge2" type="number" step="0.01"></label>
-<label>Steifigkeit Quer<input id="stiff2" type="number" placeholder="leer = Standard"></label>
-<label class="full">Material Quer<select id="mat2"><option value="1.14">Nylon / Synthetik</option><option value="1.38">Polyester</option><option value="1.30">Naturdarm</option></select></label>
-<div class="full" id="gch2"></div>
-</div></div>
-</div>
-<button class="opt" id="newbsp" style="text-align:center">Neu bespannt (neue Messreihe starten)</button>
-<button class="opt" id="delrk" style="text-align:center">Diesen Schläger löschen</button>
-<div class="court">
-<div class="big"><span id="kg">-</span> <small>kg</small></div>
-<div class="dots" id="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-<p id="msg">Bereit.</p>
-<button id="go">Messung starten</button>
-<div id="hz"></div>
-<div style="font-size:12px;color:#93a395;margin-top:10px">Tipp: Dämpfer entfernen, Schläger fest halten und neben das Mikrofon, ruhiger Raum, immer an derselben Stelle schlagen.</div>
-<div id="cmp" style="display:none;margin-top:12px;text-align:left"><div id="cmpt" style="font-size:14px"></div>
-<button class="opt" id="sv" style="text-align:center">Messung speichern</button>
-<button class="opt" id="cb" style="text-align:center">Faktor aus Soll berechnen</button>
-<div style="font-size:12px;color:#93a395;margin-top:6px">Die Abweichung zum Soll ist nur aussagekräftig, wenn der Faktor an einem anderen Schläger gleicher Bauart bestimmt wurde. Berechnest du den Faktor aus dieser Messung, zeigt die App danach den Verlauf, aber nicht mehr, ob das Bespannen stimmte.</div></div>
-</div>
-<div id="hist" style="margin-top:16px"></div>
-<div id="arch" style="margin-top:16px"></div>
+:root{--bg:#0f1712;--card:#18231b;--ln:#2a3a2f;--tx:#e8efe3;--mut:#8da091;--acc:#b8e04a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:84px}
+header,main{max-width:480px;margin:0 auto;padding:0 18px}
+header{padding-top:max(14px,env(safe-area-inset-top))}
+header select{width:100%;margin:0;font-size:20px;font-weight:700;background:transparent;border:0;color:var(--tx);padding:8px 0}
+label{display:block;font-size:13px;color:var(--mut)}
+input,select{width:100%;margin-top:4px;padding:11px 12px;font-size:16px;border:1px solid var(--ln);border-radius:10px;background:#101a13;color:var(--tx)}
+input[type=checkbox]{width:auto;margin:0 8px 0 0}
+button{font:inherit;border:0;cursor:pointer}
+.pri{width:100%;padding:16px;font-size:17px;font-weight:700;border-radius:14px;background:var(--acc);color:#10190f}
+.sec{width:100%;padding:12px;font-size:14px;border-radius:12px;background:var(--card);color:var(--tx);border:1px solid var(--ln);margin-top:10px}
+.sec.danger{color:#e88a7a}
+.row{display:flex;gap:10px}.row .sec{flex:1}
+.opt{width:100%;text-align:left;padding:10px;margin-top:6px;font-size:14px;background:var(--card);color:var(--tx);border:1px solid var(--ln);border-radius:10px}
+.chip{padding:8px 14px;margin:6px 6px 0 0;font-size:15px;background:var(--card);color:var(--tx);border:1px solid var(--ln);border-radius:20px}
+.ring{--p:0;width:250px;height:250px;margin:14px auto;border-radius:50%;background:conic-gradient(var(--acc) calc(var(--p)*1%),var(--ln) 0);display:flex;align-items:center;justify-content:center}
+.ring .in{width:224px;height:224px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center}
+.big{font-size:62px;font-weight:700;color:var(--acc);line-height:1}
+.big small{font-size:20px;color:var(--mut);font-weight:400;margin-left:4px}
+.hint,#msg,#hz,#cmpt,#sinfo,#sinfo2{font-size:13px;color:var(--mut);margin:8px 0}
+#msg{text-align:center;font-size:14px}#hz{text-align:center}#cmpt{text-align:center;font-size:14px;color:var(--tx)}
+details{background:var(--card);border-radius:14px;margin:10px 0;padding:0 14px}
+summary{padding:14px 0;font-weight:600;cursor:pointer}
+details>div,details>label{margin-bottom:14px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:10px}.full{grid-column:1/-1}
+.line{display:flex;justify-content:space-between;font-size:14px;padding:7px 0;border-bottom:1px solid var(--ln)}
+h3{font-size:16px;margin:16px 0 6px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#121c15;border-top:1px solid var(--ln);display:flex;padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;background:none;color:var(--mut);padding:15px 4px;font-size:14px;font-weight:600}
+nav button.on{color:var(--acc)}
+</style></head><body>
+<header><select id="rk"></select></header>
+<main>
+<section id="pm">
+ <div class="ring" id="ring"><div class="in"><div class="big"><span id="kg">-</span><small>kg</small></div></div></div>
+ <p id="msg">Bereit.</p>
+ <button class="pri" id="go">Messung starten</button>
+ <div id="cmp" style="display:none"><div id="cmpt"></div>
+  <div class="row"><button class="sec" id="sv">Speichern</button><button class="sec" id="cb">Als Soll kalibrieren</button></div></div>
+ <div id="hz"></div>
+ <p class="hint" style="text-align:center">Dämpfer entfernen, Schläger fest halten, immer an derselben Stelle schlagen.</p>
+</section>
+<section id="pv" style="display:none"><div id="hist"></div><h3>Frühere Bespannungen</h3><div id="arch"></div></section>
+<section id="ps" style="display:none">
+ <details open><summary>Schläger</summary><div class="g">
+  <label>Name<input id="rname"></label><label>Saitenmuster<input id="rpat" placeholder="16x19"></label>
+  <label>Kopfgröße (sq in)<input id="head" type="number"></label><label>Bespannt am<input id="sdate" type="datetime-local"></label>
+  <label>Soll Haupt (kg)<input id="t1" type="number" step="0.1"></label><label>Soll Quer (kg)<input id="t2" type="number" step="0.1" placeholder="leer = gleich"></label></div></details>
+ <details><summary>Hauptsaite</summary>
+  <label>Saite suchen<input id="q" type="search" autocomplete="off"></label><div id="res"></div><div id="sinfo">Ohne Auswahl wird der Materialstandard genutzt.</div>
+  <div class="g"><label>Dicke (mm)<input id="gauge" type="number" step="0.01"></label><label>Steifigkeit (lb/in)<input id="stiff" type="number" placeholder="leer = Standard"></label></div>
+  <div id="gch"></div>
+  <label style="margin-top:10px">Material<select id="mat"><option value="1.14">Nylon / Synthetik</option><option value="1.38">Polyester</option><option value="1.30">Naturdarm</option></select></label></details>
+ <details><summary>Quersaite (Hybrid)</summary>
+  <label><input id="hyb" type="checkbox">Quersaite weicht ab</label>
+  <div id="b2" style="display:none;margin-top:10px">
+   <label>Quersaite suchen<input id="q2" type="search" autocomplete="off"></label><div id="res2"></div><div id="sinfo2"></div>
+   <div class="g"><label>Dicke (mm)<input id="gauge2" type="number" step="0.01"></label><label>Steifigkeit (lb/in)<input id="stiff2" type="number" placeholder="leer = Standard"></label></div>
+   <div id="gch2"></div>
+   <label style="margin-top:10px">Material<select id="mat2"><option value="1.14">Nylon / Synthetik</option><option value="1.38">Polyester</option><option value="1.30">Naturdarm</option></select></label></div></details>
+ <details><summary>Kalibrierung</summary>
+  <label>Kalibrierfaktor<input id="cal" type="number" step="0.01"></label>
+  <p class="hint">Direkt nach dem Bespannen unter „Messen" auf „Als Soll kalibrieren" tippen. Die Abweichung zum Soll ist nur aussagekräftig, wenn der Faktor an einem anderen Schläger gleicher Bauart bestimmt wurde.</p></details>
+ <button class="sec" id="newbsp">Neu bespannt (neue Messreihe)</button>
+ <button class="sec danger" id="delrk">Diesen Schläger löschen</button>
+</section>
 </main>
+<nav><button id="bm" class="on" onclick="tab('m')">Messen</button><button id="bv" onclick="tab('v')">Verlauf</button><button id="bs" onclick="tab('s')">Schläger</button></nav>
 <script>
 var N=9,GJ={},DB=[],ctx,an,stream,running=false,hits=[],raf,last=null,S={list:[],cur:0};
 function $(i){return document.getElementById(i)}
-function dots(n){var d=$('dots').children;for(var i=0;i<d.length;i++)d[i].className=i<n?'on':''}
+function dots(n){$('ring').style.setProperty('--p',n/N*100)}
+function tab(t){['m','v','s'].forEach(function(x){$('p'+x).style.display=x===t?'block':'none';$('b'+x).className=x===t?'on':''});window.scrollTo(0,0)}
 var IDS=['rname','rpat','t1','t2','sdate','head','gauge','mat','stiff','cal','hyb','gauge2','mat2','stiff2'];
 function store(){try{localStorage.setItem('rk2',JSON.stringify(S))}catch(e){}}
 function now16(d){return new Date(d-new Date(d).getTimezoneOffset()*6e4).toISOString().slice(0,16)}
 function mk(n,p,t1,t2,h,g,m,st,cal,q,sd){return {rname:n,rpat:p,t1:t1,t2:t2,sdate:sd,head:h,gauge:g,mat:m,stiff:st,cal:cal,hyb:'0',gauge2:'1.25',mat2:'1.38',stiff2:'',q:q,q2:'',log:[]}}
 try{S=JSON.parse(localStorage.getItem('rk2'))||S}catch(e){}
-if(!S.list||!S.list.length){S={cur:0,list:[
- mk('Wilson Blade 98S','18x16',23,22,98,'1.25','1.38',218,'0.94','Head Lynx Tour 17 (1.25)',''),
- mk('Head Radical Rev','16x19',24,'',98,'1.23','1.38',185,'0.85','MSV Co.-Focus 16L','')]};store()}
+if(!S.list||!S.list.length){S={cur:0,mv:2,list:[
+ mk('Wilson Blade 98S','18x16',23,22,98,'1.25','1.38',218,'1.10','Head Lynx Tour 17 (1.25)',''),
+ mk('Head Radical Rev','16x19',24,'',98,'1.23','1.38',185,'0.99','MSV Co.-Focus 16L','')]};store()}
 if(S.mv!==2){S.list.forEach(function(r){r.cal=(parseFloat(r.cal)*1.1678).toFixed(2)});S.mv=2;store()}
 fetch('strings.json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){if(d.length>100){DB=d;$('sinfo').textContent=d.length+' Saiten verfügbar. Ohne Auswahl wird der Materialstandard genutzt.'}}).catch(function(){$('sinfo').textContent='Saitenliste nicht verfügbar. Steifigkeit manuell eingeben.'});
-
 fetch('gauges.json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){GJ=d}).catch(function(){});
+
 function opts(){var s=$('rk');s.innerHTML='';S.list.forEach(function(r,i){var o=document.createElement('option');o.value=i;o.textContent=r.rname||('Schläger '+(i+1));s.appendChild(o)});
  var n=document.createElement('option');n.value='new';n.textContent='+ Neuer Schläger';s.appendChild(n);s.value=S.cur}
 function showB2(){$('b2').style.display=$('hyb').checked?'block':'none'}
-function fill(){var r=S.list[S.cur];last=null;$('kg').textContent='-';$('hz').textContent='';$('msg').textContent='Bereit.';dots(0);
+function fill(){var r=S.list[S.cur];last=null;$('kg').textContent='-';$('hz').textContent='';$('msg').textContent='Bereit.';$('go').textContent='Messung starten';dots(0);
  IDS.forEach(function(id){var e=$(id);if(e.type==='checkbox')e.checked=(r[id]==='1');else e.value=(r[id]==null?'':r[id])});
  $('q').value=r.q||'';$('q2').value=r.q2||'';$('res').innerHTML='';$('res2').innerHTML='';$('gch').innerHTML='';$('gch2').innerHTML='';
  showB2();res();hist();arch()}
@@ -93,32 +102,30 @@ function grab(){var r=S.list[S.cur];IDS.forEach(function(id){var e=$(id);r[id]=e
 IDS.concat(['q','q2']).forEach(function(id){$(id).addEventListener('change',grab)});
 $('hyb').addEventListener('change',showB2);
 $('rk').onchange=function(){
- if(this.value==='new'){S.list.push(mk('Neuer Schläger','',24,'',98,'1.25','1.38','','1.00','',now16(Date.now())));S.cur=S.list.length-1}
- else S.cur=+this.value;
- store();opts();fill()};
-$('delrk').onclick=function(){if(S.list.length>1&&confirm('Diesen Schläger mit allen Messungen löschen?')){S.list.splice(S.cur,1);S.cur=0;store();opts();fill()}};
+ if(this.value==='new'){S.list.push(mk('Neuer Schläger','',24,'',98,'1.25','1.38','','1.00','',now16(Date.now())));S.cur=S.list.length-1;store();opts();fill();tab('s')}
+ else{S.cur=+this.value;store();opts();fill()}};
+$('delrk').onclick=function(){if(S.list.length>1&&confirm('Diesen Schläger mit allen Messungen löschen?')){S.list.splice(S.cur,1);S.cur=0;store();opts();fill();tab('m')}};
 $('newbsp').onclick=function(){var r=S.list[S.cur];
  if(!confirm('Neue Bespannung starten? Die bisherigen Messungen werden als frühere Bespannung abgelegt.'))return;
  r.arch=r.arch||[];if(r.log.length)r.arch.push({sd:r.sdate,t1:r.t1,t2:r.t2,log:r.log});
- r.log=[];r.sdate=now16(Date.now());store();fill()};
+ r.log=[];r.sdate=now16(Date.now());store();fill();tab('m')};
 
 var GR={'15':[1.35,1.38,1.40],'15L':[1.32,1.35,1.37],'16':[1.28,1.30,1.32],'16L':[1.24,1.25,1.27],'17':[1.20,1.24,1.25,1.27],'17L':[1.18,1.20,1.22],'18':[1.15,1.18,1.20],'19':[1.10,1.12]};
 function chips(a,s){var b=$('gch'+s);b.innerHTML='';if(!a)return;
- var t=document.createElement('div');t.style.cssText='font-size:13px;color:#93a395';
- t.textContent='Dicke nicht exakt bekannt. Wert vom Saitenpaket wählen:';b.appendChild(t);
+ var t=document.createElement('div');t.className='hint';t.textContent='Dicke nicht exakt bekannt. Wert vom Saitenpaket wählen:';b.appendChild(t);
  a.forEach(function(v){var c=document.createElement('button');c.className='chip';c.textContent=v.toFixed(2);
   c.onclick=function(){$('gauge'+s).value=v;grab()};b.appendChild(c)})}
 function pick(x,s){
  $('stiff'+s).value=x[2];
  $('mat'+s).value=x[3].charAt(0)==='P'?'1.38':(x[3]==='G'?'1.30':'1.14');
-  var g=null,ch=null,m=x[1].match(/1\.\d{1,3}/),t3=x[1].match(/\b(1[0-4]\d)\s*\/\s*1[5-9]/),gj=GJ[x[0]+'|'+x[1]];
+ var g=null,ch=null,m=x[1].match(/1\.\d{1,3}/),t3=x[1].match(/\b(1[0-4]\d)\s*\/\s*1[5-9]/),gj=GJ[x[0]+'|'+x[1]];
  if(m&&parseFloat(m[0])>=1&&parseFloat(m[0])<=1.5)g=parseFloat(m[0]);
  else if(t3)g=parseInt(t3[1])/100;
  else if(gj&&gj.mm)g=gj.mm;
  else{var n=x[1].match(/\b(1[5-9])(L?)\b/);if(n&&GR[n[1]+n[2]]){ch=GR[n[1]+n[2]];g=ch[Math.floor(ch.length/2)]}}
  if(g)$('gauge'+s).value=g;
  chips(ch,s);$('q'+s).value=x[0]+' '+x[1];$('res'+s).innerHTML='';
- $('sinfo'+s).textContent='Gewählt: '+x[0]+' '+x[1]+' ('+x[2]+' lb/in).'+(ch?' Dicke geschätzt.':(!m&&gj&&gj.mm?' Dicke laut Händlerseite.':''));grab()}
+ $('sinfo'+s).textContent='Gewählt: '+x[0]+' '+x[1]+' ('+x[2]+' lb/in).'+(ch?' Dicke geschätzt.':(!m&&!t3&&gj&&gj.mm?' Dicke laut Händlerseite.':''));grab()}
 function add(x,s){var b=document.createElement('button');b.className='opt';
  b.textContent=x[0]+' '+x[1]+' ('+x[2]+')';b.onclick=function(){pick(x,s)};$('res'+s).appendChild(b)}
 function search(v,s){
@@ -155,50 +162,48 @@ function tmean(a){var n=a.length,m=a.reduce(function(x,y){return x+y},0)/n,
 function tgt(){var a=parseFloat($('t1').value),b=parseFloat($('t2').value);if(!(a>0))return null;return b>0?(a+b)/2:a}
 function fh(h){return h<48?h.toFixed(h<10?1:0)+' Std.':(h/24).toFixed(1)+' Tage'}
 function res(){var b=$('cmp');b.style.display=last?'block':'none';if(!last)return;
- var t=tgt(),sd=$('sdate').value,x='';
- if(sd)x+='Seit dem Bespannen: '+fh(Math.max(0,(Date.now()-new Date(sd).getTime())/36e5))+'. ';
- if(t){var d=last.kg-t;x+='Soll Ø '+t.toFixed(1)+' kg, Abweichung '+(d>0?'+':'')+d.toFixed(1)+' kg ('+(d/t*100).toFixed(0)+' %).'}
- $('cmpt').textContent=x}
-$('sv').onclick=function(){if(!last)return;var r=S.list[S.cur];r.log.push({t:Date.now(),kg:+last.kg.toFixed(1),f:Math.round(last.f)});store();hist()};
+ var t=tgt(),sd=$('sdate').value,x=[];
+ if(t){var d=last.kg-t;x.push('Soll Ø '+t.toFixed(1)+' kg');x.push((d>0?'+':'')+d.toFixed(1)+' kg ('+(d/t*100).toFixed(0)+' %)')}
+ if(sd)x.push(fh(Math.max(0,(Date.now()-new Date(sd).getTime())/36e5))+' seit Bespannen');
+ $('cmpt').textContent=x.join(' · ')}
+$('sv').onclick=function(){if(!last)return;var r=S.list[S.cur];r.log.push({t:Date.now(),kg:+last.kg.toFixed(1),f:Math.round(last.f)});store();hist();$('msg').textContent='Gespeichert. Siehe Reiter Verlauf.'};
 $('cb').onclick=function(){var t=tgt();if(!last||!t)return;
  var c=parseFloat($('cal').value)||1,n=(c*t/last.kg).toFixed(2);
- if(confirm('Faktor von '+c+' auf '+n+' setzen? Das gilt nur, wenn direkt nach dem Bespannen gemessen wurde.')){
+ if(confirm('Faktor von '+c+' auf '+n+' setzen? Das gilt nur, wenn direkt nach dem Bespannen gemessen wurde und das Soll genau anlag.')){
   $('cal').value=n;grab();last.kg=last.kg*n/c;$('kg').textContent=last.kg.toFixed(1);res()}};
 function hist(){
  var r=S.list[S.cur],L=r.log,b=$('hist');b.innerHTML='';
- if(!L.length){b.innerHTML='<div style="font-size:13px;color:#93a395">Noch keine gespeicherten Messungen.</div>';return}
- var t=tgt(),t0=r.sdate?new Date(r.sdate).getTime():L[0].t,W=300,H=120,P=14;
+ if(!L.length){b.innerHTML='<p class="hint">Noch keine gespeicherten Messungen. Miss und tippe auf „Speichern".</p>';return}
+ var t=tgt(),t0=r.sdate?new Date(r.sdate).getTime():L[0].t,W=300,H=130,P=14;
  var xs=L.map(function(m){return Math.log(1+Math.max(0,(m.t-t0)/36e5))}),mx=Math.max.apply(null,xs.concat([1]));
  var ys=L.map(function(m){return m.kg}),all=t?ys.concat([t]):ys,lo=Math.min.apply(null,all)-1,hi=Math.max.apply(null,all)+1;
  function X(v){return P+v/mx*(W-2*P)}function Y(v){return H-P-(v-lo)/(hi-lo)*(H-2*P)}
  var pts=L.map(function(m,i){return X(xs[i]).toFixed(1)+','+Y(m.kg).toFixed(1)}).join(' ');
- var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;background:#1d2a20;border-radius:8px">'+
-  (t?'<line x1="'+P+'" x2="'+(W-P)+'" y1="'+Y(t)+'" y2="'+Y(t)+'" stroke="#93a395" stroke-dasharray="4"/>':'')+
-  '<polyline points="'+pts+'" fill="none" stroke="#8fd16a" stroke-width="2"/>'+
-  L.map(function(m,i){return '<circle cx="'+X(xs[i])+'" cy="'+Y(m.kg)+'" r="3.5" fill="#c9e23a"/>'}).join('')+'</svg>';
- var h='<div style="font-size:15px;font-weight:700">Verlauf: '+(r.rname||'')+'</div><div style="font-size:12px;color:#93a395;margin:4px 0 8px">Zeitachse gestaucht, gestrichelt = Soll. Prozent '+(t?'zum Soll':'zur ersten Messung')+'.</div>'+svg;
+ var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;background:#18231b;border-radius:14px">'+
+  (t?'<line x1="'+P+'" x2="'+(W-P)+'" y1="'+Y(t)+'" y2="'+Y(t)+'" stroke="#8da091" stroke-dasharray="4"/>':'')+
+  '<polyline points="'+pts+'" fill="none" stroke="#b8e04a" stroke-width="2"/>'+
+  L.map(function(m,i){return '<circle cx="'+X(xs[i])+'" cy="'+Y(m.kg)+'" r="3.5" fill="#b8e04a"/>'}).join('')+'</svg>';
+ var h='<h3 style="margin-top:8px">'+(r.rname||'Verlauf')+'</h3><p class="hint" style="margin-top:0">Zeitachse gestaucht, gestrichelt = Soll. Prozent '+(t?'zum Soll':'zur ersten Messung')+'.</p>'+svg;
  L.forEach(function(m){var hh=(m.t-t0)/36e5,base=t||L[0].kg,p=(m.kg-base)/base*100,d=new Date(m.t);
-  h+='<div style="display:flex;justify-content:space-between;font-size:14px;padding:6px 0;border-bottom:1px solid #33453a"><span>'+
-   d.toLocaleString('de-DE',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+(r.sdate?' · '+fh(Math.max(0,hh)):'')+'</span><span>'+
-   m.kg.toFixed(1)+' kg ('+(p>0?'+':'')+p.toFixed(0)+' %)</span></div>'});
- h+='<button class="opt" id="dl" style="text-align:center">Letzte Messung löschen</button>';
+  h+='<div class="line"><span>'+d.toLocaleString('de-DE',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+(r.sdate?' · '+fh(Math.max(0,hh)):'')+'</span><span>'+m.kg.toFixed(1)+' kg ('+(p>0?'+':'')+p.toFixed(0)+' %)</span></div>'});
+ h+='<button class="sec" id="dl">Letzte Messung löschen</button>';
  b.innerHTML=h;$('dl').onclick=function(){L.pop();store();hist()}}
 function arch(){var r=S.list[S.cur],A=r.arch||[],b=$('arch'),h='';
- if(!A.length){b.innerHTML='';return}
- h='<div style="font-size:15px;font-weight:700">Frühere Bespannungen</div><div style="font-size:12px;color:#93a395;margin:4px 0 8px">Erste Messung nach dem Bespannen, Soll und Abweichung. Die Hz sind unabhängig vom Faktor.</div>';
+ if(!A.length){b.innerHTML='<p class="hint" style="margin-top:0">Noch keine. „Neu bespannt" im Reiter Schläger legt die Messreihe hier ab.</p>';return}
+ h='<p class="hint" style="margin-top:0">Erste Messung nach dem Bespannen. Die Hz sind unabhängig vom Faktor.</p>';
  A.slice().reverse().forEach(function(s){var f=s.log[0],a=parseFloat(s.t1),c=parseFloat(s.t2),t=a>0?(c>0?(a+c)/2:a):null;
   var d=s.sd?new Date(s.sd).toLocaleDateString('de-DE'):'ohne Datum';
-  h+='<div style="display:flex;justify-content:space-between;font-size:14px;padding:6px 0;border-bottom:1px solid #33453a"><span>'+d+(t?' · Soll '+t.toFixed(1):'')+' · '+f.f+' Hz</span><span>'+f.kg.toFixed(1)+' kg'+(t?' ('+((f.kg-t)>0?'+':'')+(f.kg-t).toFixed(1)+')':'')+'</span></div>'});
+  h+='<div class="line"><span>'+d+(t?' · Soll '+t.toFixed(1):'')+' · '+f.f+' Hz</span><span>'+f.kg.toFixed(1)+' kg'+(t?' ('+((f.kg-t)>0?'+':'')+(f.kg-t).toFixed(1)+')':'')+'</span></div>'});
  b.innerHTML=h}
 
 function stop(){running=false;cancelAnimationFrame(raf);
  if(stream)stream.getTracks().forEach(function(t){t.stop()});
  if(ctx)ctx.close();ctx=null;$('go').textContent='Neue Messung'}
 function finish(){stop();
- if(hits.length<3){$('msg').textContent='Zu wenige gültige Schläge, bitte nochmal.';return}
- var t=tmean(hits);last={kg:tension(t.f),f:t.f};
+ if(hits.length<3){$('msg').textContent='Zu wenige gültige Schläge, bitte nochmal.';dots(0);return}
+ var t=tmean(hits);last={kg:tension(t.f),f:t.f};dots(N);
  $('kg').textContent=last.kg.toFixed(1);
- $('hz').textContent='Mittel '+t.f.toFixed(1)+' Hz ('+t.n+' von '+hits.length+' Schlägen)';
+ $('hz').textContent='Ø '+t.f.toFixed(1)+' Hz · '+t.n+' von '+hits.length+' Schlägen';
  $('msg').textContent='Fertig.';res()}
 async function start(){
  grab();hits=[];last=null;$('cmp').style.display='none';dots(0);$('kg').textContent='-';$('hz').textContent='';
@@ -209,7 +214,7 @@ async function start(){
  ctx.createMediaStreamSource(stream).connect(an);
  var td=new Float32Array(1024),fd=new Float32Array(an.frequencyBinCount);
  var onset=0,lt=0;
- running=true;$('go').textContent='Beenden (min. 3 Schläge)';$('msg').textContent='Schlag 1 von '+N+': Tippe auf die Saiten.';
+ running=true;$('go').textContent='Beenden (ab 3 Schlägen)';$('msg').textContent='Schlag 1 von '+N+': Tippe auf die Saiten.';
  (function loop(){
   if(!running)return;
   var now=performance.now();an.getFloatTimeDomainData(td);
@@ -226,6 +231,6 @@ async function start(){
 $('go').onclick=function(){
  if(running){if(hits.length>=3)finish();else{stop();$('msg').textContent='Abgebrochen.';dots(0)}return}
  start()};
-opts();fill();
+opts();fill();tab('m');
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(function(){});
 </script></body></html>
