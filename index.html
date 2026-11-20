@@ -52,6 +52,7 @@ nav button.on{color:var(--acc)}
  <details open><summary>Schläger</summary><div class="g">
   <label>Name<input id="rname"></label><label>Saitenmuster<input id="rpat" placeholder="16x19"></label>
   <label>Kopfgröße (sq in)<input id="head" type="number"></label><label>Bespannt am<input id="sdate" type="datetime-local"></label>
+  <label class="full">Saitenlänge Haupt (cm), leer = Schätzung<input id="slen" type="number" step="0.1"></label>
   <label>Soll Haupt (kg)<input id="t1" type="number" step="0.1"></label><label>Soll Quer (kg)<input id="t2" type="number" step="0.1" placeholder="leer = gleich"></label></div></details>
  <details><summary>Hauptsaite</summary>
   <label>Saite suchen<input id="q" type="search" autocomplete="off"></label><div id="res"></div><div id="sinfo">Ohne Auswahl wird der Materialstandard genutzt.</div>
@@ -78,7 +79,7 @@ var N=9,GJ={},DB=[],ctx,an,stream,running=false,hits=[],raf,last=null,S={list:[]
 function $(i){return document.getElementById(i)}
 function dots(n){$('ring').style.setProperty('--p',n/N*100)}
 function tab(t){['m','v','s'].forEach(function(x){$('p'+x).style.display=x===t?'block':'none';$('b'+x).className=x===t?'on':''});window.scrollTo(0,0)}
-var IDS=['rname','rpat','t1','t2','sdate','head','gauge','mat','stiff','cal','hyb','gauge2','mat2','stiff2'];
+var IDS=['rname','rpat','t1','t2','sdate','head','slen','gauge','mat','stiff','cal','hyb','gauge2','mat2','stiff2'];
 function store(){try{localStorage.setItem('rk2',JSON.stringify(S))}catch(e){}}
 function now16(d){return new Date(d-new Date(d).getTimezoneOffset()*6e4).toISOString().slice(0,16)}
 function mk(n,p,t1,t2,h,g,m,st,cal,q,sd){return {rname:n,rpat:p,t1:t1,t2:t2,sdate:sd,head:h,gauge:g,mat:m,stiff:st,cal:cal,hyb:'0',gauge2:'1.25',mat2:'1.38',stiff2:'',q:q,q2:'',log:[]}}
@@ -144,7 +145,7 @@ function side(s){
  if(St>0)corr=Math.pow(St/def,-0.15);
  return {mu:rho*Math.PI*d*d/4,corr:corr}}
 function tension(f){
- var A=parseFloat($('head').value)*6.4516,L=1.24*Math.sqrt(A)/100;
+ var A=parseFloat($('head').value)*6.4516,sl=parseFloat($('slen').value),L=(sl>0?sl:1.24*Math.sqrt(A))/100;
  var cal=parseFloat($('cal').value)||1,a=side(''),mu=a.mu,corr=a.corr;
  if($('hyb').checked){var b=side('2');mu=(a.mu+b.mu)/2;corr=(a.corr+b.corr)/2}
  return 4*L*L*f*f*mu*cal*corr/9.80665}
